@@ -1,12 +1,11 @@
+import 'package:BoldAlive/models/catagories.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constants.dart';
-import '../../models/Product.dart';
 import '../../screens/home/components/body.dart';
 
 import 'components/drawercatagories.dart';
-import 'components/item_card.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -53,32 +52,11 @@ void showMenu() {
                           alignment: Alignment(0, 0),
                           overflow: Overflow.visible,
                           children: <Widget>[
-                            // Positioned(
-                            //   top: -72,
-                            //   child: Container(
-                            //     decoration: BoxDecoration(
-                            //         borderRadius:
-                            //             BorderRadius.all(Radius.circular(50)),
-                            //         border: Border.all(
-                            //             color: Colors.grey, width: 10)),
-                            //     child: Center(
-                            //       child:Padding(
-                            //         padding: const EdgeInsets.all(10.0),
-                            //         child: Text(
-                            //           "All Catagories",
-                            //           style: Theme.of(context)
-                            //               .textTheme
-                            //               .headline5
-                            //               .copyWith(fontWeight: FontWeight.bold),
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
+                     
                             Padding(
                                 padding: const EdgeInsets.only(left:20,right:20,top:20),
                                 child: GridView.builder(
-                                    itemCount: products.length,
+                                    itemCount: catagories.length,
                                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 3,
                                       mainAxisSpacing: kDefaultPaddin,
@@ -86,7 +64,7 @@ void showMenu() {
                                       childAspectRatio: 0.75,
                                     ),
                                     itemBuilder: (context, index) => DrawerCatagory(
-                                          product: products[index],
+                                          catagories: catagories[index],
                                           press: () {},
                                         )),
                               ),

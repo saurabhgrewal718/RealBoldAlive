@@ -9,7 +9,7 @@ class ColorAndSize extends StatelessWidget {
     @required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ColorAndSize extends StatelessWidget {
               children: [
                 TextSpan(text: "Product Name\n"),
                 TextSpan(
-                  text: "${product.title} cm",
+                  text: "${product.title}",
                   style: Theme.of(context)
                       .textTheme
                       .headline5
@@ -39,7 +39,7 @@ class ColorAndSize extends StatelessWidget {
               children: [
                 TextSpan(text: "Size\n"),
                 TextSpan(
-                  text: "${product.size} cm",
+                  text: "${product.description} cm",
                   style: Theme.of(context)
                       .textTheme
                       .headline5

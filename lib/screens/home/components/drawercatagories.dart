@@ -1,14 +1,15 @@
+import 'package:BoldAlive/models/catagories.dart';
 import 'package:flutter/material.dart';
 import '../../../models/Product.dart';
 
 import '../../../constants.dart';
 
 class DrawerCatagory extends StatelessWidget {
-  final Product product;
+  final Catagories catagories;
   final Function press;
   const DrawerCatagory({
     Key key,
-    this.product,
+    this.catagories,
     this.press,
   }) : super(key: key);
 
@@ -27,12 +28,12 @@ class DrawerCatagory extends StatelessWidget {
               // height: 180,
               // width: 160,
               decoration: BoxDecoration(
-                color: product.color,
+                color: Colors.pinkAccent,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(
-                tag: "${product.id}",
-                child: Image.asset(product.image),
+                tag: "${catagories.title}",
+                child: Image.asset(catagories.image),
               ),
             ),
           ),
@@ -40,7 +41,7 @@ class DrawerCatagory extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin / 4),
             child: Text(
               // products is out demo list
-              product.title,
+              catagories.title,
               textAlign: TextAlign.center,
               style: TextStyle(color: kTextLightColor),
             ),

@@ -9,7 +9,7 @@ class ProductTitleWithImage extends StatelessWidget {
     @required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +46,11 @@ class ProductTitleWithImage extends StatelessWidget {
               ),
               
               Container(
-                height: 250,
-                width: 200,
+                height: 150,
+                width: 150,
                 child: Hero(
-                  tag: "${product.id}",
-                  child: Image.asset(
+                  tag: "${product.title}",
+                  child: Image.network(
                     product.image,
                     fit: BoxFit.fill,
                   ),
