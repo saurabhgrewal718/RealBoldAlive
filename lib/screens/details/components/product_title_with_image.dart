@@ -30,7 +30,7 @@ class ProductTitleWithImage extends StatelessWidget {
                 .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               RichText(
                 text: TextSpan(
@@ -46,6 +46,7 @@ class ProductTitleWithImage extends StatelessWidget {
               ),
               
               Container(
+                margin: EdgeInsets.only(right:50),
                 height: 150,
                 width: 150,
                 child: Hero(

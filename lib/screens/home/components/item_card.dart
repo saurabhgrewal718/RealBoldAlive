@@ -32,7 +32,20 @@ class ItemCard extends StatelessWidget {
               ),
               child: Hero(
                 tag: "${product.title}",
-                child: Image.network(product.image),
+                child: 
+                  Image.network(product.image,fit: BoxFit.cover,
+                    loadingBuilder:(BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
+                    if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                        backgroundColor: Colors.greenAccent,
+                        value: loadingProgress.expectedTotalBytes != null ? 
+                              loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
               ),
             ),
           ),
