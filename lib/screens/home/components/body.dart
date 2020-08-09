@@ -5,7 +5,6 @@ import '../../../constants.dart';
 import '../../../models/Product.dart';
 import '../../../screens/details/details_screen.dart';
 
-import 'categorries.dart';
 import 'item_card.dart';
 
 class Body extends StatefulWidget {
@@ -64,7 +63,7 @@ class _BodyState extends State<Body> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
             child: GridView.builder(
-                itemCount: products.length,
+                itemCount: profile.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: kDefaultPaddin,
@@ -72,7 +71,7 @@ class _BodyState extends State<Body> {
                   childAspectRatio: 0.75,
                 ),
                 itemBuilder: (context, index) => ItemCard(
-                      product: products[index],
+                      product: profile[index],
                       press: () => Navigator.push(
                           context,
                           MaterialPageRoute(

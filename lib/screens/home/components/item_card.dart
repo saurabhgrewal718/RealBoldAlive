@@ -4,7 +4,7 @@ import '../../../models/Product.dart';
 import '../../../constants.dart';
 
 class ItemCard extends StatelessWidget {
-  final Product product;
+  final Products product;
   final Function press;
   const ItemCard({
     Key key,
@@ -27,12 +27,12 @@ class ItemCard extends StatelessWidget {
               // height: 180,
               // width: 160,
               decoration: BoxDecoration(
-                color: product.color,
+                color: Colors.white38,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(
-                tag: "${product.id}",
-                child: Image.asset(product.image),
+                tag: "${product.title}",
+                child: Image.network(product.image),
               ),
             ),
           ),
