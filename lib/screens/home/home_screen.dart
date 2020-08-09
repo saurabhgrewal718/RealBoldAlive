@@ -19,11 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
 void firestoreTest(){
-  Firestore.instance.collection('users/anKvEpQEffwY70Z4cyBh/messages')
-    .snapshots()
-    .listen((data){
-      print(data.documents[0]['test']);
+  Firestore.instance.collection('products')
+    .getDocuments()
+    .then((querySnapshot) => {
+      querySnapshot.documents.forEach((result) {
+        print(result.data);
+      })
     });
+    
 }
 
 void showMenu() {
@@ -87,8 +90,6 @@ void showMenu() {
                                           press: () {},
                                         )),
                               ),
-                          
-                            
                           ],
                         ))),
                 
@@ -129,7 +130,5 @@ void showMenu() {
       body: Body(),
     );
   }
-
-  
 }
 

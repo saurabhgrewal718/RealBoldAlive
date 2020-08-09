@@ -1,4 +1,6 @@
+import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../constants.dart';
 import '../../../models/Product.dart';
 import '../../../screens/details/details_screen.dart';
@@ -6,9 +8,43 @@ import '../../../screens/details/details_screen.dart';
 import 'categorries.dart';
 import 'item_card.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  bool _inIt = true;
+  bool isloading = false;
+
+  @override
+  void didChangeDependencies() async {
+    setState(() {
+        isloading=true;
+      });
+    if (_inIt) {
+      setState(() {
+        isloading=true;
+      });
+      Provider.of<ProductModel>(context,listen: false).fetchAndSetProducts().then((_) {
+        setState(() {
+          isloading=false;
+        });
+      });
+    }
+    _inIt = false;
+    super.didChangeDependencies();
+    setState(() {
+        isloading=false;
+      });
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final profiles = Provider.of<ProductModel>(context);
+    final profile = profiles.items;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
