@@ -1,4 +1,5 @@
 import 'package:BoldAlive/models/catagories.dart';
+import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,16 +19,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-void firestoreTest(){
-  Firestore.instance.collection('products')
-    .getDocuments()
-    .then((querySnapshot) => {
-      querySnapshot.documents.forEach((result) {
-        print(result.data);
-      })
-    });
+// void firestoreTest(){
+//   Firestore.instance.collection('products')
+//     .getDocuments()
+//     .then((querySnapshot) => {
+//       querySnapshot.documents.forEach((result) {
+//         print(result.data);
+//       })
+//     });
     
-}
+// }
 
 void showMenu() {
     showModalBottomSheet(
@@ -101,14 +102,18 @@ void showMenu() {
             // By default our  icon color is white
             color: kTextColor,
           ),
-          onPressed: firestoreTest,
+          onPressed: (){
+            Navigator.of(context).pushNamed(CartScreen.routeName);
+          },
         ),
         IconButton(
           icon: Icon(Icons.edit,
             // By default our  icon color is white
             color: kTextColor,
           ),
-          onPressed: firestoreTest,
+          onPressed: (){
+
+          },
         ),
         SizedBox(width: kDefaultPaddin / 2)
       ],
