@@ -1,4 +1,7 @@
+import 'package:BoldAlive/loginScreen.dart';
 import 'package:BoldAlive/models/ProductProvider.dart';
+import 'package:BoldAlive/signupscreen.dart';
+import 'package:BoldAlive/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './constants.dart';
@@ -23,7 +26,13 @@ class MyApp extends StatelessWidget {
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomeScreen(),
+        home: Welcome(),
+        routes: {
+          HomeScreen.routeName : (ctx) => HomeScreen(),
+          LoginScreen.routeName : (ctx) => LoginScreen(),
+          SignupScreen.routeName : (ctx) => SignupScreen(),
+
+        },
       ),
     );
   }

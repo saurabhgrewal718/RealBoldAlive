@@ -20,9 +20,9 @@ class ColorAndSize extends StatelessWidget {
             text: TextSpan(
               style: TextStyle(color: kTextColor),
               children: [
-                TextSpan(text: "Product Name\n"),
+                TextSpan(text: "Product Description\n"),
                 TextSpan(
-                  text: "${product.title}",
+                  text: "${product.description}",
                   style: Theme.of(context)
                       .textTheme
                       .headline5
@@ -32,60 +32,24 @@ class ColorAndSize extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: RichText(
-            text: TextSpan(
-              style: TextStyle(color: kTextColor),
-              children: [
-                TextSpan(text: "Size\n"),
-                TextSpan(
-                  text: "${product.description} cm",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      .copyWith(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-          ),
-        ),
+        // Expanded(
+        //   child: RichText(
+        //     text: TextSpan(
+        //       style: TextStyle(color: kTextColor),
+        //       children: [
+        //         TextSpan(text: "Size\n"),
+        //         TextSpan(
+        //           text: "${product.description} cm",
+        //           style: Theme.of(context)
+        //               .textTheme
+        //               .headline5
+        //               .copyWith(fontWeight: FontWeight.bold),
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
-    );
-  }
-}
-
-class ColorDot extends StatelessWidget {
-  final Color color;
-  final bool isSelected;
-  const ColorDot({
-    Key key,
-    this.color,
-    // by default isSelected is false
-    this.isSelected = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: kDefaultPaddin / 4,
-        right: kDefaultPaddin / 2,
-      ),
-      padding: EdgeInsets.all(2.5),
-      height: 24,
-      width: 24,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: isSelected ? color : Colors.transparent,
-        ),
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
-      ),
     );
   }
 }

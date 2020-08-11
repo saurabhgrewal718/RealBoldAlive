@@ -28,7 +28,7 @@ class DrawerCatagory extends StatelessWidget {
               // height: 180,
               // width: 160,
               decoration: BoxDecoration(
-                color: Colors.pinkAccent,
+                color: Colors.grey,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(

@@ -14,28 +14,14 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   bool _inIt = true;
-  bool isloading = false;
 
   @override
   void didChangeDependencies() async {
-    setState(() {
-        isloading=true;
-      });
     if (_inIt) {
-      setState(() {
-        isloading=true;
-      });
-      Provider.of<ProductModel>(context,listen: false).fetchAndSetProducts().then((_) {
-        setState(() {
-          isloading=false;
-        });
-      });
+      Provider.of<ProductModel>(context,listen: false).fetchAndSetProducts();
     }
     _inIt = false;
     super.didChangeDependencies();
-    setState(() {
-        isloading=false;
-      });
   }
 
 

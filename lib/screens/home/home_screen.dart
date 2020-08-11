@@ -8,6 +8,7 @@ import '../../screens/home/components/body.dart';
 import 'components/drawercatagories.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = './home';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -97,6 +98,13 @@ void showMenu() {
         IconButton(
           icon: SvgPicture.asset(
             "assets/icons/cart.svg",
+            // By default our  icon color is white
+            color: kTextColor,
+          ),
+          onPressed: firestoreTest,
+        ),
+        IconButton(
+          icon: Icon(Icons.add,
             // By default our  icon color is white
             color: kTextColor,
           ),

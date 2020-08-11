@@ -33,19 +33,7 @@ List<Catagories> catagories = [
     title: "Office Code",
     image: "assets/images/bag_6.png",
   ),
-  Catagories(
-    title: "Office Code",
-    image: "assets/images/bag_6.png",
-  ),
-  Catagories(
-    title: "Office Code",
-    image: "assets/images/bag_6.png",
-  ),
-  Catagories(
-    title: "Office Code",
-    image: "assets/images/bag_6.png",
-  ),
-
+ 
 ];
 
 String dummyText =
