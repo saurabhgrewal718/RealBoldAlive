@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import '../../../models/Product.dart';
-
+import '../../../models/cart.dart';
 import '../../../constants.dart';
 
 class AddToCart extends StatelessWidget {
@@ -14,6 +15,7 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
       child: Row(
@@ -33,7 +35,10 @@ class AddToCart extends StatelessWidget {
                 "assets/icons/add_to_cart.svg",
                 color: Colors.blueGrey,
               ),
-              onPressed: () {},
+              onPressed: () {
+                cart.addItem(product.id,product.price,product.title);
+                print(cart);
+              },
             ),
           ),
           Expanded(

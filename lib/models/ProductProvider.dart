@@ -24,6 +24,7 @@ Future<void> fetchAndSetProducts() async {
           price: result.data['price'],
           description: result.data['description'],
           image: result.data['image'],
+          id:result.data['id']
         )
       );
  

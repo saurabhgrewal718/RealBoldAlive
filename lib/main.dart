@@ -1,5 +1,6 @@
 import 'package:BoldAlive/loginScreen.dart';
 import 'package:BoldAlive/models/ProductProvider.dart';
+import 'package:BoldAlive/models/cart.dart';
 import 'package:BoldAlive/signupscreen.dart';
 import 'package:BoldAlive/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
           providers: [
             ChangeNotifierProvider.value(value: ProductModel(),),
+            ChangeNotifierProvider.value(value: Cart(),),
           ],
           child: MaterialApp(
         debugShowCheckedModeBanner: false,

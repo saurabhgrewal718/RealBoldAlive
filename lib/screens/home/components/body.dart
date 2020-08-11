@@ -1,5 +1,6 @@
 import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../../constants.dart';
 import '../../../models/Product.dart';
@@ -25,50 +26,60 @@ class _BodyState extends State<Body> {
   }
 
 
+   Future<void> onrefresh()async{
+    HapticFeedback.vibrate();
+      Provider.of<ProductModel>(context,listen: false).fetchAndSetProducts();
+    
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final profiles = Provider.of<ProductModel>(context);
     final profile = profiles.items;
     
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-          child: Text(
-            "Bold Alive",
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(fontWeight: FontWeight.bold),
-          ),
-        ),
-        SizedBox(height: 20,),
-        // Categories(),
-        Expanded(
-          child: Padding(
+    return RefreshIndicator(
+        onRefresh: onrefresh,
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-            child: GridView.builder(
-                itemCount: profile.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: kDefaultPaddin,
-                  crossAxisSpacing: kDefaultPaddin,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) => ItemCard(
-                      product: profile[index],
-                      press: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailsScreen(
-                              product: profile[index],
-                            ),
-                          )),
-                    )),
+            child: Text(
+              "Bold Alive",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-      ],
+          SizedBox(height: 20,),
+          // Categories(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+              child: GridView.builder(
+                  itemCount: profile.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: kDefaultPaddin,
+                    crossAxisSpacing: kDefaultPaddin,
+                    childAspectRatio: 0.75,
+                  ),
+                  itemBuilder: (context, index) => ItemCard(
+                        product: profile[index],
+                        press: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsScreen(
+                                product: profile[index],
+                              ),
+                            )),
+                      )),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
