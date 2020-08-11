@@ -2,6 +2,7 @@ import 'package:BoldAlive/loginScreen.dart';
 import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:BoldAlive/signupscreen.dart';
 import 'package:BoldAlive/welcome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './constants.dart';
@@ -26,14 +27,40 @@ class MyApp extends StatelessWidget {
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Welcome(),
+        home: LoginApp(),
         routes: {
           HomeScreen.routeName : (ctx) => HomeScreen(),
+          Welcome.routeName : (ctx) => Welcome(),
           LoginScreen.routeName : (ctx) => LoginScreen(),
           SignupScreen.routeName : (ctx) => SignupScreen(),
 
         },
       ),
+    );
+  }
+}
+
+class LoginApp extends StatefulWidget {
+  @override
+  _LoginAppState createState() => _LoginAppState();
+}
+
+class _LoginAppState extends State<LoginApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+          child:
+          StreamBuilder(
+            stream: FirebaseAuth.instance.onAuthStateChanged,
+            builder: (ctx,usersnapshot){
+              CircularProgressIndicator();
+              if(usersnapshot.hasData){
+                return HomeScreen();
+              }
+              return Welcome();
+            },
+          ),
+           
     );
   }
 }

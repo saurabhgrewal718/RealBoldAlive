@@ -104,7 +104,7 @@ void showMenu() {
           onPressed: firestoreTest,
         ),
         IconButton(
-          icon: Icon(Icons.add,
+          icon: Icon(Icons.edit,
             // By default our  icon color is white
             color: kTextColor,
           ),
