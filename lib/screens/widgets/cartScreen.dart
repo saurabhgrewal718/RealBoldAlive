@@ -1,9 +1,10 @@
+import 'package:BoldAlive/models/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/cart.dart' show Cart;
 import './cartItem.dart';
-import '../../models/orders.dart';
+import './orderpage.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';
@@ -11,6 +12,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
+    final totalamount = cart.totalAmount.toStringAsFixed(2);
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Cart'),
@@ -31,7 +33,7 @@ class CartScreen extends StatelessWidget {
                   Spacer(),
                   Chip(
                     label: Text(
-                      '\$${cart.totalAmount.toStringAsFixed(2)}',
+                      '\₹ $totalamount',
                       style: TextStyle(
                         color: Theme.of(context).primaryTextTheme.title.color,
                       ),
@@ -63,6 +65,7 @@ class CartScreen extends StatelessWidget {
 }
 
 class OrderButton extends StatefulWidget {
+
   const OrderButton({
     Key key,
     @required this.cart,
@@ -73,7 +76,6 @@ class OrderButton extends StatefulWidget {
   @override
   _OrderButtonState createState() => _OrderButtonState();
 }
-
 class _OrderButtonState extends State<OrderButton> {
   var _isLoading = false;
   @override
@@ -94,3 +96,4 @@ class _OrderButtonState extends State<OrderButton> {
     );
   }
 }
+

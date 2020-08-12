@@ -44,6 +44,8 @@ class _LoginFormState extends State<LoginForm> {
       try{
         authResult = await _auth.signInWithEmailAndPassword(email: _email.trim(), password: _password.trim());
         print(authResult);
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('userId', authResult.user.uid);
         
         if(authResult!=null ){
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);

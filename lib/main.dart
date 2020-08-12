@@ -1,7 +1,9 @@
 import 'package:BoldAlive/loginScreen.dart';
 import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:BoldAlive/models/cart.dart';
+import 'package:BoldAlive/models/orders.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
+import 'package:BoldAlive/screens/widgets/orderpage.dart';
 import 'package:BoldAlive/signupscreen.dart';
 import 'package:BoldAlive/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './constants.dart';
 import './screens/home/home_screen.dart';
+import './models/orders.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,6 +25,8 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider.value(value: ProductModel(),),
             ChangeNotifierProvider.value(value: Cart(),),
+            ChangeNotifierProvider.value(value: Orders(),),
+            
           ],
           child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -36,7 +41,8 @@ class MyApp extends StatelessWidget {
           Welcome.routeName : (ctx) => Welcome(),
           LoginScreen.routeName : (ctx) => LoginScreen(),
           SignupScreen.routeName : (ctx) => SignupScreen(),
-          CartScreen.routeName : (ctx) => CartScreen()
+          CartScreen.routeName : (ctx) => CartScreen(),
+          OrderPage.routeName : (ctx) => OrderPage()
 
         },
       ),

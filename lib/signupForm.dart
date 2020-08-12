@@ -52,6 +52,7 @@ class _SignupFormState extends State<SignupForm> {
         authResult = await _auth.createUserWithEmailAndPassword(email: _email.trim(), password: _password.trim());
         print(authResult);
         
+        
         //saving the data in the users     
         await Firestore.instance.collection('users').document(authResult.user.uid).setData({
           'username':_usrname,

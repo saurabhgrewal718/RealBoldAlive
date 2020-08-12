@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './cart.dart';
 
@@ -21,17 +23,13 @@ class OrderItem {
 
 class Orders with ChangeNotifier {
   List<OrderItem> _orders = [];
-  final String authToken;
-  final String userId; 
-
-  Orders(this.authToken,this.userId,this._orders);
-
+  
   List<OrderItem> get orders {
     return [..._orders];
   }
 
   Future <void> fetchAndSetOrders() async{
-    final url = 'https://flutter-shop-e2ee9.firebaseio.com/orders/$userId.json?auth=$authToken';
+    final url = 'https://flutter-shop-e2ee9.firebaseio.com/orders';
     final response = await http.get(url);
     final List<OrderItem> loadedOrders =[];
     final extractedData = json.decode(response.body) as Map<String,dynamic>;
@@ -61,30 +59,47 @@ class Orders with ChangeNotifier {
   }
 
   Future <void> addOrder(List<CartItem> cartProducts, double total) async {
-    final url = 'https://flutter-shop-e2ee9.firebaseio.com/orders/$userId.json?auth=$authToken';
-    final timestamp = DateTime.now();
-    final response = await http.post(
-      url,
-      body: json.encode({
-        'amount': total,
-        'dateTime': timestamp.toIso8601String(),
-        'products': cartProducts.map((cp) => {
-          'id':cp.id,
-          'title':cp.title,
-          'quantity':cp.quantity,
-          'price':cp.price
-        }).toList(),
-      }),
-    );
-    _orders.insert(
-      0,
-      OrderItem(
-        id: json.decode(response.body)['name'],
-        amount: total,
-        dateTime: timestamp,
-        products: cartProducts,
-      ),
-    );
+    // final url = 'https://flutter-shop-e2ee9.firebaseio.com/orders/$userId.json?auth=$authToken';
+    // final timestamp = DateTime.now();
+    // final response = await http.post(
+    //   url,
+    //   body: json.encode({
+    //     'amount': total,
+    //     'dateTime': timestamp.toIso8601String(),
+    //     'products': cartProducts.map((cp) => {
+    //       'id':cp.id,
+    //       'title':cp.title,
+    //       'quantity':cp.quantity,
+    //       'price':cp.price
+    //     }).toList(),
+    //   }),
+    // );
+    final prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getString('userId');
+
+    final amount = total;
+    final products = cartProducts.map((cp) => {
+        'id':cp.id,
+        'title':cp.title,
+        'quantity':cp.quantity,
+        'price':cp.price
+      }).toList();
+    print(amount);
+    print(products);
+    Firestore.instance.collection('orders').add({
+      'totalamount': amount,
+      'order':products
+    });
+    
+    // _orders.insert(
+    //   0,
+    //   OrderItem(
+    //     id: json.decode(response.body)['name'],
+    //     amount: total,
+    //     dateTime: timestamp,
+    //     products: cartProducts,
+    //   ),
+    // );
     notifyListeners();
   }
 }
