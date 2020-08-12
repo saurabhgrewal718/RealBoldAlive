@@ -1,8 +1,11 @@
+import 'package:BoldAlive/models/cart.dart';
 import 'package:BoldAlive/models/catagories.dart';
+import 'package:BoldAlive/screens/details/components/badge.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../screens/home/components/body.dart';
 
@@ -96,16 +99,22 @@ void showMenu() {
           ),
           onPressed: showMenu,
         ),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/cart.svg",
-            // By default our  icon color is white
-            color: kTextColor,
+        Consumer<Cart>(
+            builder: (_, cart, ch) => Badge(
+                  child: ch,
+                  value: cart.itemCount.toString(),
+                ),
+            child: IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/cart.svg",
+                // By default our  icon color is white
+                color: kTextColor,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+            ),
           ),
-          onPressed: (){
-            Navigator.of(context).pushNamed(CartScreen.routeName);
-          },
-        ),
         IconButton(
           icon: Icon(Icons.edit,
             // By default our  icon color is white
