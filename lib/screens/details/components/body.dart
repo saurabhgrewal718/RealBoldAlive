@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: size.height+100,
+            height: size.height+230,
             child: Stack(
               children: <Widget>[
                 Container(
@@ -46,7 +46,8 @@ class Body extends StatelessWidget {
                       SizedBox(height: kDefaultPaddin / 2),
                       CounterWithFavBtn(),
                       SizedBox(height: kDefaultPaddin / 2),
-                      AddToCart(product: product)
+                      AddToCart(product: product),
+
                     ],
                   ),
                 ),
