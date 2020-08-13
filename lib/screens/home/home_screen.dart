@@ -33,6 +33,32 @@ class _HomeScreenState extends State<HomeScreen> {
 //     });
     
 // }
+void showSettigs() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.0),
+                topRight: Radius.circular(16.0),
+              ),
+              color: Colors.white,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('text button 1'),
+                Text('text button 1'),
+                Text('text button 1'),
+                Text('text button 1')
+                
+              ],
+            ),
+          );
+        });
+  }
+
 
 void showMenu() {
     showModalBottomSheet(
@@ -89,7 +115,7 @@ void showMenu() {
       elevation: 0,
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/settings.svg",height:28,width: 28,),
-        onPressed: () {},
+        onPressed: showSettigs,
       ),
       actions: <Widget>[
         IconButton(
