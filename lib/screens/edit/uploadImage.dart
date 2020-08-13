@@ -1,4 +1,5 @@
 import 'package:BoldAlive/screens/atoms/head_of_app.dart';
+import 'package:BoldAlive/screens/checkout/completeoder.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -14,11 +15,12 @@ class _UploadImageState extends State<UploadImage> {
     List<String> mylist = ['https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg','https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg','https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg','https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg'];
     return Scaffold(
           body: Container(
+            height: MediaQuery.of(context).size.height +50,
         child:Column(
           children: <Widget>[
             Headofapp(title: "Bold Alive",subtitle: 'Uplaod Your Custom Image',),
-            Text('Uplaod Image'),
-            SizedBox(height: 30,),
+            
+            SizedBox(height: 10,),
             CarouselSlider(
               options: CarouselOptions(
                     height: 350,
@@ -48,7 +50,90 @@ class _UploadImageState extends State<UploadImage> {
                   },
                 );
               }).toList(),
-            )
+            ),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                'data SizedBox(height: 10,), SizedBox(height: 10,),SizedBox(height: 10,),SizedBox(height: 10,),',
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                'data SizedBox(height: 10,), SizedBox(height: 10,),SizedBox(height: 10,),SizedBox(height: 10,),',
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                    width: MediaQuery.of(context).size.width*0.4,
+                    padding: EdgeInsets.only(top: 3, left: 3),
+                    margin: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black),
+                        top: BorderSide(color: Colors.black),
+                        left: BorderSide(color: Colors.black),
+                        right: BorderSide(color: Colors.black),
+                      )
+                    ),
+                    child: MaterialButton(
+                      minWidth: double.infinity,
+                      height: 50,
+                      onPressed: (){},
+                      color: Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      child: Text('Upload Yours', style: TextStyle(
+                        fontWeight: FontWeight.w600, 
+                        fontSize: 18,
+                        color: Colors.black
+                      ),),
+                    ),
+                  ),
+                  Container(
+                width: MediaQuery.of(context).size.width*0.4,
+                padding: EdgeInsets.only(top: 3, left: 3),
+                margin: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border(
+                    bottom: BorderSide(color: Colors.black),
+                    top: BorderSide(color: Colors.black),
+                    left: BorderSide(color: Colors.black),
+                    right: BorderSide(color: Colors.black),
+                  )
+                ),
+                child: MaterialButton(
+                  minWidth: double.infinity,
+                  height: 50,
+                  onPressed: (){
+                    Navigator.of(context).pushNamed(CompleteOrder.routeName);
+                  },
+                  color: Colors.greenAccent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: Text('Buy Now', style: TextStyle(
+                    fontWeight: FontWeight.w600, 
+                    fontSize: 18,
+                    color: Colors.black
+                  ),),
+                ),
+              ),
+              ],
+            ),
+              
+              SizedBox(height: 10,),
+
           ],
         )
       ),

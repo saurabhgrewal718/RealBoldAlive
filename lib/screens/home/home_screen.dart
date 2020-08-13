@@ -88,7 +88,7 @@ void showMenu() {
       backgroundColor: Colors.white,
       elevation: 0,
       leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/back.svg"),
+        icon: SvgPicture.asset("assets/icons/settings.svg",height:28,width: 28,),
         onPressed: () {},
       ),
       actions: <Widget>[
