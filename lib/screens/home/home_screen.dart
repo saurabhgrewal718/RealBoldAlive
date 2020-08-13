@@ -1,6 +1,7 @@
 import 'package:BoldAlive/models/cart.dart';
 import 'package:BoldAlive/models/catagories.dart';
 import 'package:BoldAlive/screens/details/components/badge.dart';
+import 'package:BoldAlive/screens/edit/editScreen.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,7 @@ void showMenu() {
             color: kTextColor,
           ),
           onPressed: (){
-
+            Navigator.of(context).pushNamed(EditScreen.routeName);
           },
         ),
         SizedBox(width: kDefaultPaddin / 2)

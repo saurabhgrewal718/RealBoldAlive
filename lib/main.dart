@@ -2,6 +2,9 @@ import 'package:BoldAlive/loginScreen.dart';
 import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:BoldAlive/models/cart.dart';
 import 'package:BoldAlive/models/orders.dart';
+import 'package:BoldAlive/screens/edit/editScreen.dart';
+import 'package:BoldAlive/screens/edit/editsceond.dart';
+import 'package:BoldAlive/screens/edit/uploadImage.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:BoldAlive/screens/widgets/orderpage.dart';
 import 'package:BoldAlive/signupscreen.dart';
@@ -42,7 +45,10 @@ class MyApp extends StatelessWidget {
           LoginScreen.routeName : (ctx) => LoginScreen(),
           SignupScreen.routeName : (ctx) => SignupScreen(),
           CartScreen.routeName : (ctx) => CartScreen(),
-          OrderPage.routeName : (ctx) => OrderPage()
+          OrderPage.routeName : (ctx) => OrderPage(),
+          EditScreen.routeName :(ctx) => EditScreen(),
+          EditSceond.routeName : (ctx) => EditSceond(),
+          UploadImage.routeName :(ctx) => UploadImage()
 
         },
       ),

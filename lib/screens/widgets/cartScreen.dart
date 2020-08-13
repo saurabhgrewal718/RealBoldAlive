@@ -1,5 +1,6 @@
 import 'package:BoldAlive/models/orders.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/cart.dart' show Cart;
@@ -86,11 +87,19 @@ class _OrderButtonState extends State<OrderButton> {
         setState(() {
           _isLoading = true;
         });
-        await Provider.of<Orders>(context, listen: false).addOrder(widget.cart.items.values.toList(),widget.cart.totalAmount);
-        setState(() {
+        try{
+          await Provider.of<Orders>(context, listen: false).addOrder(widget.cart.items.values.toList(),widget.cart.totalAmount);
+          widget.cart.clear();
+          setState(() {
           _isLoading = false;
         });
-        widget.cart.clear();
+
+        }on PlatformException catch(err){
+          print(err);
+          setState(() {
+          _isLoading = false;
+        });
+        }    
       },
       textColor: Theme.of(context).primaryColor,
     );
