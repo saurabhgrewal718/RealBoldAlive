@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:BoldAlive/screens/atoms/head_of_app.dart';
 import 'package:BoldAlive/screens/checkout/completeoder.dart';
+import 'package:BoldAlive/screens/edit/filldetails.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -155,9 +156,47 @@ class _UploadImageState extends State<UploadImage> {
                     height: MediaQuery.of(context).size.height +400,
                       child:Column(
                           children: <Widget>[
-                            Headofapp(title: "Bold Alive",subtitle: 'Uplaod Your Custom Image',),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Headofapp(title: "Bold Alive",subtitle: 'Uplaod Your Custom Image',),
+                                Container()
+                              ],
+                            ),
                             
                             SizedBox(height: 10,),
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              child: Text(
+                                'Colors',
+                                style: TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              child: Text(
+                                'Print Size',
+                                style: TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              child: Text(
+                                'Fabric Quality',
+                                style: TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              child: Text(
+                                'Upload image',
+                                style: TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                             CarouselSlider(
                               options: CarouselOptions(
                                     height: 350,
@@ -191,7 +230,7 @@ class _UploadImageState extends State<UploadImage> {
                             Container(
                               padding: EdgeInsets.all(15),
                               child: Text(
-                                'data SizedBox(height: 10,), SizedBox(height: 10,),SizedBox(height: 10,),SizedBox(height: 10,),',
+                                'this will be my product..your final product wil look somewhat like this where! your picture will be hown instead of this sample picture',
                                 style: TextStyle(fontSize: 16),
                                 textAlign: TextAlign.center,
                               ),
@@ -204,8 +243,50 @@ class _UploadImageState extends State<UploadImage> {
                                 textAlign: TextAlign.center,
                               ):Text(''),
                             ),
-                            getImageWidget(),
-                            SizedBox(height: 10,),
+                            // getImageWidget(),
+                            // SizedBox(height: 10,),
+                            // Container(
+                            //   width: MediaQuery.of(context).size.width*0.4,
+                            //   padding: EdgeInsets.only(top: 3, left: 3),
+                            //   margin: EdgeInsets.all(16),
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(50),
+                            //     border: Border(
+                            //       bottom: BorderSide(color: Colors.black),
+                            //       top: BorderSide(color: Colors.black),
+                            //       left: BorderSide(color: Colors.black),
+                            //       right: BorderSide(color: Colors.black),
+                            //     )
+                            //   ),
+                            //   child: MaterialButton(
+                            //     minWidth: double.infinity,
+                            //     height: 50,
+                            //     onPressed:showOptions,
+                            //     color: Colors.white,
+                            //     elevation: 0,
+                            //     shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(50)
+                            //     ),
+                            //     child: fileSize!=null ? Text('Retake Image', style: TextStyle(
+                            //       fontWeight: FontWeight.w600, 
+                            //       fontSize: 18,
+                            //       color: Colors.black
+                            //     ),):Text('Select Image', style: TextStyle(
+                            //       fontWeight: FontWeight.w600, 
+                            //       fontSize: 18,
+                            //       color: Colors.black
+                            //     ),),
+                            //   ),
+                            // ),
+                            Container(
+                              padding: EdgeInsets.only(bottom:30),
+                              child: Text(
+                                'Fianlly Select Size',
+                                style: TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+
                             Container(
                               width: MediaQuery.of(context).size.width*0.4,
                               padding: EdgeInsets.only(top: 3, left: 3),
@@ -222,40 +303,10 @@ class _UploadImageState extends State<UploadImage> {
                               child: MaterialButton(
                                 minWidth: double.infinity,
                                 height: 50,
-                                onPressed:showOptions,
-                                color: Colors.white,
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)
-                                ),
-                                child: fileSize!=null ? Text('Retake Image', style: TextStyle(
-                                  fontWeight: FontWeight.w600, 
-                                  fontSize: 18,
-                                  color: Colors.black
-                                ),):Text('Select Image', style: TextStyle(
-                                  fontWeight: FontWeight.w600, 
-                                  fontSize: 18,
-                                  color: Colors.black
-                                ),),
-                              ),
-                            ),
-                            fileSize!=null ? Container(
-                              width: MediaQuery.of(context).size.width*0.4,
-                              padding: EdgeInsets.only(top: 3, left: 3),
-                              margin: EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                border: Border(
-                                  bottom: BorderSide(color: Colors.black),
-                                  top: BorderSide(color: Colors.black),
-                                  left: BorderSide(color: Colors.black),
-                                  right: BorderSide(color: Colors.black),
-                                )
-                              ),
-                              child: MaterialButton(
-                                minWidth: double.infinity,
-                                height: 50,
-                                onPressed:showOptions,
+                                // onPressed:showOptions,
+                                onPressed: (){
+                                  Navigator.of(context).pushNamed(FillDetails.routeName);
+                                },
                                 color: Colors.white,
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
@@ -267,7 +318,8 @@ class _UploadImageState extends State<UploadImage> {
                                   color: Colors.black
                                 ),),
                               ),
-                            ):Container(),
+                            ),
+                            
 
 
                           ],

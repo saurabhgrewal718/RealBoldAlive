@@ -5,6 +5,7 @@ import 'package:BoldAlive/models/orders.dart';
 import 'package:BoldAlive/screens/checkout/completeoder.dart';
 import 'package:BoldAlive/screens/edit/editScreen.dart';
 import 'package:BoldAlive/screens/edit/editsceond.dart';
+import 'package:BoldAlive/screens/edit/filldetails.dart';
 import 'package:BoldAlive/screens/edit/uploadImage.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:BoldAlive/screens/widgets/orderpage.dart';
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
           EditScreen.routeName :(ctx) => EditScreen(),
           EditSceond.routeName : (ctx) => EditSceond(),
           UploadImage.routeName :(ctx) => UploadImage(),
-          CompleteOrder.routeName :(ctx) => CompleteOrder()
+          CompleteOrder.routeName :(ctx) => CompleteOrder(),
+          FillDetails.routeName :(ctx) => FillDetails()
 
         },
       ),
