@@ -34,38 +34,63 @@ class _Tile2State extends State<Tile2> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Image.network(
-                        widget.img,
-                        height: 80,
-                        width: MediaQuery.of(context).size.width *0.35,
-                      ),
-                      
                     Container(
-                      width: MediaQuery.of(context).size.width *0.4,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Image.network(
+                          widget.img,
+                          height: 150,
+                          width: 150,
+                        ),
+                    ),                     
+                    Container(
                       child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: Text(
                           widget.title,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600)),
+                          ),                          
                         ),
-                        Text(
+                        Container(
+                          padding: EdgeInsets.only(top:10),
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: Text(
                           widget.subtitle,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.openSans(
-                              textStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w600)),
-                          
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 8,
+                          style: TextStyle(color:Colors.black45,fontSize:15),
+                          ),                          
                         ),
-                        
-                      ],
-            ),
+                        Container(
+                          padding: EdgeInsets.only(top:10,bottom:10),
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              text: new TextSpan(
+                                text: 'Starts from ',
+                                style: DefaultTextStyle.of(context).style,
+                                children: <TextSpan>[
+                                  new TextSpan(
+                                      text: '₹ 456',
+                                      style: new TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
+                                 
+                                ],
+                              ),
+                            ),                          
+                          ),
+                       
+                        ],
+                      ),
                     ),
                   ],
                 ),

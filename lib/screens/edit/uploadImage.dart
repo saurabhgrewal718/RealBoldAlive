@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:BoldAlive/screens/atoms/head_of_app.dart';
 import 'package:BoldAlive/screens/checkout/completeoder.dart';
@@ -16,6 +17,83 @@ class UploadImage extends StatefulWidget {
 class _UploadImageState extends State<UploadImage> {
   File _selectedFile;
   bool isLoading = false;
+  double fileSize;
+
+  void showOptions() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Row(
+            children: <Widget>[
+              Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black),
+                      top: BorderSide(color: Colors.black),
+                      left: BorderSide(color: Colors.black),
+                      right: BorderSide(color: Colors.black),
+                    )
+                  ),
+                  child: MaterialButton(
+                    minWidth: double.infinity,
+                    height: 50,
+                    onPressed: (){
+                      getimage(ImageSource.camera);
+
+                    },
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text('Camera', style: TextStyle(
+                      fontWeight: FontWeight.w600, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),),
+                  ),
+                ),
+                Container(
+              width: MediaQuery.of(context).size.width*0.4,
+              padding: EdgeInsets.only(top: 3, left: 3),
+              margin: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                border: Border(
+                  bottom: BorderSide(color: Colors.black),
+                  top: BorderSide(color: Colors.black),
+                  left: BorderSide(color: Colors.black),
+                  right: BorderSide(color: Colors.black),
+                )
+              ),
+              child: MaterialButton(
+                minWidth: double.infinity,
+                height: 50,
+                onPressed: (){
+                  // Navigator.of(context).pushNamed(CompleteOrder.routeName);
+                  getimage(ImageSource.gallery);
+                },
+                color: Colors.greenAccent,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50)
+                ),
+                child: Text('Gallary', style: TextStyle(
+                  fontWeight: FontWeight.w600, 
+                  fontSize: 18,
+                  color: Colors.black
+                ),),
+              ),
+            ),
+            ],
+          );
+        });
+  }
+
 
   Widget getImageWidget(){
     if(_selectedFile!=null){
@@ -56,7 +134,7 @@ class _UploadImageState extends State<UploadImage> {
       this.setState(() {
         _selectedFile = cropped;
         int filesize = _selectedFile.lengthSync();
-        print('${(filesize/1000000).toStringAsFixed(2)} Mb');
+        fileSize = filesize/1000000;
         isLoading = false;
       });
     }else{
@@ -74,42 +152,42 @@ class _UploadImageState extends State<UploadImage> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    height: MediaQuery.of(context).size.height +50,
+                    height: MediaQuery.of(context).size.height +400,
                       child:Column(
                           children: <Widget>[
                             Headofapp(title: "Bold Alive",subtitle: 'Uplaod Your Custom Image',),
                             
                             SizedBox(height: 10,),
-                            // CarouselSlider(
-                            //   options: CarouselOptions(
-                            //         height: 350,
-                            //         aspectRatio: 16/9,
-                            //         viewportFraction: 0.8,
-                            //         initialPage: 0,
-                            //         enableInfiniteScroll: true,
-                            //         reverse: false,
-                            //         autoPlay: true,
-                            //         autoPlayInterval: Duration(seconds: 3),
-                            //         autoPlayAnimationDuration: Duration(milliseconds: 800),
-                            //         autoPlayCurve: Curves.fastOutSlowIn,
-                            //         enlargeCenterPage: true,
-                            //         scrollDirection: Axis.horizontal,
-                            //     ),
-                            //   items: mylist.map((i) {
-                            //     return Builder(
-                            //       builder: (BuildContext context) {
-                            //         return Container(
-                            //           width: MediaQuery.of(context).size.width,
-                            //           margin: EdgeInsets.symmetric(horizontal: 5.0),
-                            //           decoration: BoxDecoration(
-                            //             color: Colors.white60
-                            //           ),
-                            //           child: Image.network(i)
-                            //         );
-                            //       },
-                            //     );
-                            //   }).toList(),
-                            // ),
+                            CarouselSlider(
+                              options: CarouselOptions(
+                                    height: 350,
+                                    aspectRatio: 16/9,
+                                    viewportFraction: 0.8,
+                                    initialPage: 0,
+                                    enableInfiniteScroll: true,
+                                    reverse: false,
+                                    autoPlay: true,
+                                    autoPlayInterval: Duration(seconds: 3),
+                                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                                    autoPlayCurve: Curves.fastOutSlowIn,
+                                    enlargeCenterPage: true,
+                                    scrollDirection: Axis.horizontal,
+                                ),
+                              items: mylist.map((i) {
+                                return Builder(
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white60
+                                      ),
+                                      child: Image.network(i)
+                                    );
+                                  },
+                                );
+                              }).toList(),
+                            ),
                             Container(
                               padding: EdgeInsets.all(15),
                               child: Text(
@@ -118,77 +196,79 @@ class _UploadImageState extends State<UploadImage> {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            getImageWidget(),
-                            
-                            Row(
-                              children: <Widget>[
-                                Container(
-                                    width: MediaQuery.of(context).size.width*0.4,
-                                    padding: EdgeInsets.only(top: 3, left: 3),
-                                    margin: EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border(
-                                        bottom: BorderSide(color: Colors.black),
-                                        top: BorderSide(color: Colors.black),
-                                        left: BorderSide(color: Colors.black),
-                                        right: BorderSide(color: Colors.black),
-                                      )
-                                    ),
-                                    child: MaterialButton(
-                                      minWidth: double.infinity,
-                                      height: 50,
-                                      onPressed: (){
-                                        getimage(ImageSource.camera);
-                                      },
-                                      color: Colors.white,
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(50)
-                                      ),
-                                      child: Text('Camera', style: TextStyle(
-                                        fontWeight: FontWeight.w600, 
-                                        fontSize: 18,
-                                        color: Colors.black
-                                      ),),
-                                    ),
-                                  ),
-                                  Container(
-                                width: MediaQuery.of(context).size.width*0.4,
-                                padding: EdgeInsets.only(top: 3, left: 3),
-                                margin: EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border(
-                                    bottom: BorderSide(color: Colors.black),
-                                    top: BorderSide(color: Colors.black),
-                                    left: BorderSide(color: Colors.black),
-                                    right: BorderSide(color: Colors.black),
-                                  )
-                                ),
-                                child: MaterialButton(
-                                  minWidth: double.infinity,
-                                  height: 50,
-                                  onPressed: (){
-                                    // Navigator.of(context).pushNamed(CompleteOrder.routeName);
-                                    getimage(ImageSource.gallery);
-                                  },
-                                  color: Colors.greenAccent,
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50)
-                                  ),
-                                  child: Text('Gallary', style: TextStyle(
-                                    fontWeight: FontWeight.w600, 
-                                    fontSize: 18,
-                                    color: Colors.black
-                                  ),),
-                                ),
-                              ),
-                              ],
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              child: fileSize!=null ?Text(
+                                '${fileSize.toStringAsFixed(2)} Mb',
+                                style: TextStyle(fontSize: 16,fontWeight:FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ):Text(''),
                             ),
-                              
-                              SizedBox(height: 10,),
+                            getImageWidget(),
+                            SizedBox(height: 10,),
+                            Container(
+                              width: MediaQuery.of(context).size.width*0.4,
+                              padding: EdgeInsets.only(top: 3, left: 3),
+                              margin: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border(
+                                  bottom: BorderSide(color: Colors.black),
+                                  top: BorderSide(color: Colors.black),
+                                  left: BorderSide(color: Colors.black),
+                                  right: BorderSide(color: Colors.black),
+                                )
+                              ),
+                              child: MaterialButton(
+                                minWidth: double.infinity,
+                                height: 50,
+                                onPressed:showOptions,
+                                color: Colors.white,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)
+                                ),
+                                child: fileSize!=null ? Text('Retake Image', style: TextStyle(
+                                  fontWeight: FontWeight.w600, 
+                                  fontSize: 18,
+                                  color: Colors.black
+                                ),):Text('Select Image', style: TextStyle(
+                                  fontWeight: FontWeight.w600, 
+                                  fontSize: 18,
+                                  color: Colors.black
+                                ),),
+                              ),
+                            ),
+                            fileSize!=null ? Container(
+                              width: MediaQuery.of(context).size.width*0.4,
+                              padding: EdgeInsets.only(top: 3, left: 3),
+                              margin: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border(
+                                  bottom: BorderSide(color: Colors.black),
+                                  top: BorderSide(color: Colors.black),
+                                  left: BorderSide(color: Colors.black),
+                                  right: BorderSide(color: Colors.black),
+                                )
+                              ),
+                              child: MaterialButton(
+                                minWidth: double.infinity,
+                                height: 50,
+                                onPressed:showOptions,
+                                color: Colors.white,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)
+                                ),
+                                child: Text('Place Order', style: TextStyle(
+                                  fontWeight: FontWeight.w600, 
+                                  fontSize: 18,
+                                  color: Colors.black
+                                ),),
+                              ),
+                            ):Container(),
+
 
                           ],
                       )
@@ -204,3 +284,6 @@ class _UploadImageState extends State<UploadImage> {
     );
   }
 }
+
+
+

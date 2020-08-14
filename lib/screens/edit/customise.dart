@@ -12,54 +12,48 @@ class Customise extends StatefulWidget {
 class _CustomiseState extends State<Customise> {
      Items item0 = new Items(
       id:0,
-      title: "MyBadMan",
-      subtitle: "March, Wednesday",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTMPyqLlYjhHLdDjcirA8fii_eGDUxuLadMg&usqp=CAU");
+      title: "Front Paint only",
+      subtitle: "March, Wednesday March, Wednesday March, Wednesday March, Wednesday",
+      img: "https://www.aphrodite1994.com/media/catalog/product/cache/f90efef3a23da69054ec1e91c33299f9/d/s/dsquared_hooded_sweat_white_21256_01ks.jpg");
 
   Items item1 = new Items(
       id:1,
-      title: "Calendar",
+      title: "Back Paints only",
       subtitle: "March, Wednesday",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTMPyqLlYjhHLdDjcirA8fii_eGDUxuLadMg&usqp=CAU");
+      img: "https://demo.quemalabs.com/shophistic/demo-3/wp-content/uploads/sites/3/2018/08/wid950fitconstrainhei950t-251.jpeg");
 
   Items item2 = new Items(
     id:2,
-    title: "Groceries",
+    title: "Front And Back Paints",
     subtitle: "Bocali, Apple",
-    img: "https://is3-ssl.mzstatic.com/image/thumb/Purple123/v4/85/7e/b7/857eb7fb-587e-ebe2-db13-3625c9b50cdd/source/256x256bb.jpg",
+    img: "https://cdn.shopify.com/s/files/1/0241/9737/products/XAU-1110-18500-navy_1_1800x.jpg?v=1571442916",
   );
 
   Items item3 = new Items(
     id:3,
-    title: "Locations",
+    title: "Sleves Only",
     subtitle: "Lucy Mao going to Office",
-    img: "https://findicons.com/files/icons/1316/futurama_vol_1/256/bender.png",
+    img: "https://cdn.shopify.com/s/files/1/2089/6359/products/ec2654ee233e2fd46e1d63c28dede5cc_preview_530x@2x.png?v=1546904221",
   );
 
   Items item4 = new Items(
     id:4,
-    title: "Activity",
+    title: "Hood Only",
     subtitle: "Rose favirited your Post",
-    img: "https://p1.hiclipart.com/preview/912/608/869/super-mario-icons-super-mario-pixel-illustration.jpg",
+    img: "https://media.manofakind.se/media/catalog/product/cache/2/image/1800x/040ec09b1e35df139433887a97daa66f/p/i/pim-272052-66382-productcolor-60433403-969-frontimage1.jpg",
   );
 
   Items item5 = new Items(
     id:5,
-    title: "To do",
+    title: "All Custom",
     subtitle: "Homework, Design",
-    img: "https://invocation.internships.com/invocation/images/ccm_5d34f540-015a-48c0-b451-b1ff786e283b",
+    img: "https://ae01.alicdn.com/kf/He4d97fda44e049ed883686238f506315k/2020-Spring-Billie-Eilish-Hoodie-Women-Print-Hooded-Matching-Couple-Sweatshirt-Harajuku-Casual-Hoodies-Sweatshirts-Female.jpg",
   );
 
-  Items item6 = new Items(
-    id:6,
-    title: "Settings",
-    subtitle: "",
-    img: "https://images.vexels.com/media/users/3/192417/isolated/lists/d687ab14fc6c5a1f882b1e276547be58-winter-man-notebook-illustration.png",
-  );
 
   @override
   Widget build(BuildContext context) {
-    List<Items> myList = [item0,item1, item2, item3];
+    List<Items> myList = [item0,item1, item2, item3,item4,item5];
     return Center(
       child: Container(
         height: MediaQuery.of(context).size.height-108,
