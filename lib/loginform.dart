@@ -145,6 +145,7 @@ class _LoginFormState extends State<LoginForm> {
                               return null;
                             },
                             textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(

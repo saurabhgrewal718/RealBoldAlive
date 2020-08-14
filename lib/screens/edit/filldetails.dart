@@ -27,7 +27,8 @@ class _FillDetailsState extends State<FillDetails> {
     FocusScope.of(context).unfocus();
     if(isValid){  
       _form.currentState.save();
-      print(_form.currentState);
+      print(_email);
+      print(_password);
     }
   }
 

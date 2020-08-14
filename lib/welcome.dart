@@ -5,7 +5,7 @@ import './signupscreen.dart';
 
 
 class Welcome extends StatelessWidget {
-  static const routeName = './welcome';
+  static const routeName = './welcomepage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
