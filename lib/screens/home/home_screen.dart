@@ -2,6 +2,7 @@ import 'package:BoldAlive/models/cart.dart';
 import 'package:BoldAlive/models/catagories.dart';
 import 'package:BoldAlive/screens/details/components/badge.dart';
 import 'package:BoldAlive/screens/edit/editScreen.dart';
+import 'package:BoldAlive/screens/home/components/settingdrawer.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../screens/home/components/body.dart';
 
-import 'components/drawercatagories.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = './home';
@@ -38,6 +38,7 @@ void showSettigs() {
         context: context,
         builder: (BuildContext context) {
           return Container(
+            height: MediaQuery.of(context).size.height *0.8,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16.0),
@@ -48,10 +49,123 @@ void showSettigs() {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text('text button 1'),
-                Text('text button 1'),
-                Text('text button 1'),
-                Text('text button 1')
+                SizedBox(height: 30,),
+                Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black),
+                      top: BorderSide(color: Colors.black),
+                      left: BorderSide(color: Colors.black),
+                      right: BorderSide(color: Colors.black),
+                    )
+                  ),
+                  child: MaterialButton(
+                    minWidth: double.infinity,
+                    height: 50,
+                    onPressed: (){},
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text('Edit Answers', style: TextStyle(
+                      fontWeight: FontWeight.w600, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black),
+                      top: BorderSide(color: Colors.black),
+                      left: BorderSide(color: Colors.black),
+                      right: BorderSide(color: Colors.black),
+                    )
+                  ),
+                  child: MaterialButton(
+                    minWidth: double.infinity,
+                    height: 50,
+                    onPressed: (){},
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text('TextButton', style: TextStyle(
+                      fontWeight: FontWeight.w600, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black),
+                      top: BorderSide(color: Colors.black),
+                      left: BorderSide(color: Colors.black),
+                      right: BorderSide(color: Colors.black),
+                    )
+                  ),
+                  child: MaterialButton(
+                    minWidth: double.infinity,
+                    height: 50,
+                    onPressed: (){},
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text('My Orders', style: TextStyle(
+                      fontWeight: FontWeight.w600, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black),
+                      top: BorderSide(color: Colors.black),
+                      left: BorderSide(color: Colors.black),
+                      right: BorderSide(color: Colors.black),
+                    )
+                  ),
+                  child: MaterialButton(
+                    minWidth: double.infinity,
+                    height: 50,
+                    onPressed: (){},
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text('Logout', style: TextStyle(
+                      fontWeight: FontWeight.w600, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),),
+                  ),
+                ),
                 
               ],
             ),
@@ -95,7 +209,7 @@ void showMenu() {
                                       crossAxisSpacing: kDefaultPaddin,
                                       childAspectRatio: 0.75,
                                     ),
-                                    itemBuilder: (context, index) => DrawerCatagory(
+                                    itemBuilder: (context, index) => SettingsDrawer(
                                           catagories: catagories[index],
                                           press: () {},
                                         )),
