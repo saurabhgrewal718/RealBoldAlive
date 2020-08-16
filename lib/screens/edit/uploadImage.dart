@@ -2,12 +2,11 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:BoldAlive/screens/atoms/head_of_app.dart';
-import 'package:BoldAlive/screens/checkout/completeoder.dart';
-import 'package:BoldAlive/screens/edit/filldetails.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import './chips.dart';
 
 class UploadImage extends StatefulWidget {
   static const routeName = './upload image';
@@ -305,7 +304,7 @@ class _UploadImageState extends State<UploadImage> {
                                 height: 50,
                                 // onPressed:showOptions,
                                 onPressed: (){
-                                  Navigator.of(context).pushNamed(FillDetails.routeName);
+                                  Navigator.of(context).pushNamed(Chips.routeName);
                                 },
                                 color: Colors.white,
                                 elevation: 0,

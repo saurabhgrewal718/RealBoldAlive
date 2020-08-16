@@ -12,21 +12,21 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
    Items item0 = new Items(
       id:0,
-      title: "MyBadMan",
+      title: "Kitchen Items",
       subtitle: "March, Wednesday",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTMPyqLlYjhHLdDjcirA8fii_eGDUxuLadMg&usqp=CAU");
+      img: "https://cdn.iconscout.com/icon/premium/png-256-thumb/utensils-29-920991.png");
 
   Items item1 = new Items(
       id:1,
-      title: "Calendar",
+      title: "Phone Cases",
       subtitle: "March, Wednesday",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTMPyqLlYjhHLdDjcirA8fii_eGDUxuLadMg&usqp=CAU");
+      img: "https://images.yappy.com/products/305/shihtzu/shihtzu-15/mint/image-1.t.jpg");
 
   Items item2 = new Items(
     id:2,
-    title: "Phone Cases",
+    title: "Pillow Covers",
     subtitle: "Bocali, Apple",
-    img: "https://image.flaticon.com/icons/png/512/2022/2022185.png",
+    img: "https://static.thenounproject.com/png/881524-200.png",
   );
 
   Items item3 = new Items(
@@ -38,9 +38,9 @@ class _EditScreenState extends State<EditScreen> {
 
   Items item4 = new Items(
     id:4,
-    title: "Activity",
+    title: "Jeans",
     subtitle: "Rose favirited your Post",
-    img: "https://p1.hiclipart.com/preview/912/608/869/super-mario-icons-super-mario-pixel-illustration.jpg",
+    img: "https://cdn0.iconfinder.com/data/icons/fashion-outline-stroke-1/64/fashion_icon_set-04-512.png",
   );
 
   Items item5 = new Items(
@@ -54,12 +54,37 @@ class _EditScreenState extends State<EditScreen> {
     id:6,
     title: "Mugs",
     subtitle: "",
-    img: "https://cdn0.iconfinder.com/data/icons/cups-and-mugs/64/cup19-512.png",
+    img: "https://www.pngfind.com/pngs/m/35-354195_gelas-mug-png-funny-mugs-transparent-png.png",
   );
+    Items item7 = new Items(
+    id:7,
+    title: "Caps",
+    subtitle: "Homework, Design",
+    img: "https://cdn4.iconfinder.com/data/icons/hats-caps-essentials/48/v-02-512.png",
+  );  
+  Items item8 = new Items(
+    id:8,
+    title: "Photo Frames",
+    subtitle: "Homework, Design",
+    img: "https://cdn0.iconfinder.com/data/icons/video-editing/100/11-512.png",
+  );
+  Items item9 = new Items(
+    id:9,
+    title: "Bags",
+    subtitle: "Homework, Design",
+    img: "https://cdn0.iconfinder.com/data/icons/common-shopping-1/48/Sed-02-512.png",
+  );
+   Items item10 = new Items(
+    id:10,
+    title: "Metal Bottles",
+    subtitle: "Homework, Design",
+    img: "https://5.imimg.com/data5/UK/MU/MY-59237957/stainless-steel-water-bottle-500x500.jpg",
+  );
+
 
   @override
   Widget build(BuildContext context) {
-    List<Items> myList = [item0,item1, item2, item3, item4, item5, item6];
+    List<Items> myList = [item0,item1, item2, item3, item4, item5, item6,item7,item8,item9,item10];
     return Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,

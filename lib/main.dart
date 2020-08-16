@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './constants.dart';
 import './screens/home/home_screen.dart';
+import './screens/edit/chips.dart';
 import './models/orders.dart';
 
 void main() {
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
           EditSceond.routeName : (ctx) => EditSceond(),
           UploadImage.routeName :(ctx) => UploadImage(),
           CompleteOrder.routeName :(ctx) => CompleteOrder(),
-          FillDetails.routeName :(ctx) => FillDetails()
+          FillDetails.routeName :(ctx) => FillDetails(),
+          Chips.routeName : (ctx) => Chips(),
 
         },
       ),
