@@ -1,5 +1,8 @@
+import 'package:BoldAlive/screens/details/components/placeorder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import '../../../models/Product.dart';
 import '../../../models/cart.dart';
@@ -38,6 +41,16 @@ class AddToCart extends StatelessWidget {
                     color: Colors.blueGrey,
                   ),
                   onPressed: () {
+                    HapticFeedback.vibrate();
+                    Fluttertoast.showToast(
+                      msg: "Products Added to Cart",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.greenAccent,
+                      textColor: Colors.black,
+                      fontSize: 16.0
+                    );
                     cart.addItem(product.id,product.price,product.title);
                     print(cart);
                   },
@@ -50,7 +63,13 @@ class AddToCart extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18)),
                     color: Colors.blueGrey,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(Placeorder.routeName,arguments: {
+                        'productId':product.id,
+                        'productPrice':product.price,
+                        'productTitle':product.title
+                      });
+                    },
                     child: Text(
                       "Buy  Now".toUpperCase(),
                       style: TextStyle(

@@ -317,10 +317,7 @@ class _UploadImageState extends State<UploadImage> {
                                   color: Colors.black
                                 ),),
                               ),
-                            ),
-                            
-
-
+                            ),   
                           ],
                       )
                     ),

@@ -3,6 +3,7 @@ import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:BoldAlive/models/cart.dart';
 import 'package:BoldAlive/models/orders.dart';
 import 'package:BoldAlive/screens/checkout/completeoder.dart';
+import 'package:BoldAlive/screens/details/components/placeorder.dart';
 import 'package:BoldAlive/screens/edit/editScreen.dart';
 import 'package:BoldAlive/screens/edit/editsceond.dart';
 import 'package:BoldAlive/screens/edit/filldetails.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           CompleteOrder.routeName :(ctx) => CompleteOrder(),
           FillDetails.routeName :(ctx) => FillDetails(),
           Chips.routeName : (ctx) => Chips(),
+          Placeorder.routeName : (ctx) => Placeorder(),
 
           //the various screen for conditional rendering
           Hoodie.routeName : (ctx) => Hoodie(),

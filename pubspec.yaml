@@ -33,6 +33,8 @@ dependencies:
   carousel_slider: ^2.2.1
   image_picker: ^0.6.7+4
   image_cropper: ^1.3.0
+  chips_choice: ^1.2.0
+  fluttertoast: ^7.0.2
 
 
 dev_dependencies:
