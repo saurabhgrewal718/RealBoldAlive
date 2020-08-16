@@ -6,6 +6,9 @@ import 'package:BoldAlive/screens/checkout/completeoder.dart';
 import 'package:BoldAlive/screens/edit/editScreen.dart';
 import 'package:BoldAlive/screens/edit/editsceond.dart';
 import 'package:BoldAlive/screens/edit/filldetails.dart';
+import 'package:BoldAlive/screens/edit/offerings/hoodie.dart';
+import 'package:BoldAlive/screens/edit/offerings/kitchen.dart';
+import 'package:BoldAlive/screens/edit/offerings/mugs.dart';
 import 'package:BoldAlive/screens/edit/uploadImage.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:BoldAlive/screens/widgets/orderpage.dart';
@@ -18,6 +21,9 @@ import './constants.dart';
 import './screens/home/home_screen.dart';
 import './screens/edit/chips.dart';
 import './models/orders.dart';
+import 'screens/edit/offerings/phone.dart';
+import 'screens/edit/offerings/photo.dart';
+import 'screens/edit/offerings/shirts.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,6 +62,14 @@ class MyApp extends StatelessWidget {
           FillDetails.routeName :(ctx) => FillDetails(),
           Chips.routeName : (ctx) => Chips(),
 
+          //the various screen for conditional rendering
+          Hoodie.routeName : (ctx) => Hoodie(),
+          Kitchen.routeName : (ctx) => Kitchen(),
+          Mugs.routeName : (ctx) => Mugs(),
+          Phone.routeName : (ctx) => Phone(),
+          Photo.routeName : (ctx) => Photo(),
+          Shirts.routeName : (ctx) => Shirts(),
+                    
         },
       ),
     );

@@ -11,71 +11,71 @@ class EditScreen extends StatefulWidget {
 
 class _EditScreenState extends State<EditScreen> {
    Items item0 = new Items(
-      id:0,
+      id:1,
       title: "Kitchen Items",
       subtitle: "March, Wednesday",
       img: "https://cdn.iconscout.com/icon/premium/png-256-thumb/utensils-29-920991.png");
 
   Items item1 = new Items(
-      id:1,
+      id:2,
       title: "Phone Cases",
       subtitle: "March, Wednesday",
       img: "https://images.yappy.com/products/305/shihtzu/shihtzu-15/mint/image-1.t.jpg");
 
   Items item2 = new Items(
-    id:2,
+    id:3,
     title: "Pillow Covers",
     subtitle: "Bocali, Apple",
     img: "https://static.thenounproject.com/png/881524-200.png",
   );
 
   Items item3 = new Items(
-    id:3,
+    id:4,
     title: "Hoodies",
     subtitle: "Lucy Mao going to Office",
     img: "https://cdn0.iconfinder.com/data/icons/online-clothes-shopping-set/128/iStar_Design_Online_Shopping_LineIcons_Live-40-512.png",
   );
 
   Items item4 = new Items(
-    id:4,
+    id:5,
     title: "Jeans",
     subtitle: "Rose favirited your Post",
     img: "https://cdn0.iconfinder.com/data/icons/fashion-outline-stroke-1/64/fashion_icon_set-04-512.png",
   );
 
   Items item5 = new Items(
-    id:5,
+    id:6,
     title: "Shirts",
     subtitle: "Homework, Design",
     img: "https://cdn2.iconfinder.com/data/icons/shirts/100/shirts-01-512.png",
   );
 
   Items item6 = new Items(
-    id:6,
+    id:7,
     title: "Mugs",
     subtitle: "",
     img: "https://www.pngfind.com/pngs/m/35-354195_gelas-mug-png-funny-mugs-transparent-png.png",
   );
     Items item7 = new Items(
-    id:7,
+    id:8,
     title: "Caps",
     subtitle: "Homework, Design",
     img: "https://cdn4.iconfinder.com/data/icons/hats-caps-essentials/48/v-02-512.png",
   );  
   Items item8 = new Items(
-    id:8,
+    id:9,
     title: "Photo Frames",
     subtitle: "Homework, Design",
     img: "https://cdn0.iconfinder.com/data/icons/video-editing/100/11-512.png",
   );
   Items item9 = new Items(
-    id:9,
+    id:10,
     title: "Bags",
     subtitle: "Homework, Design",
     img: "https://cdn0.iconfinder.com/data/icons/common-shopping-1/48/Sed-02-512.png",
   );
    Items item10 = new Items(
-    id:10,
+    id:11,
     title: "Metal Bottles",
     subtitle: "Homework, Design",
     img: "https://5.imimg.com/data5/UK/MU/MY-59237957/stainless-steel-water-bottle-500x500.jpg",

@@ -7,13 +7,14 @@ import './editsceond.dart';
 
 class Tile2 extends StatefulWidget {
    Tile2({
-    this.img,this.subtitle,this.title,this.id
+    this.img,this.subtitle,this.title,this.id,this.price
   });
  
   final String title;
   final String img;
   final String subtitle;
   final int id;
+  final int price;
 
  
   @override
@@ -81,7 +82,7 @@ class _Tile2State extends State<Tile2> {
                                 style: DefaultTextStyle.of(context).style,
                                 children: <TextSpan>[
                                   new TextSpan(
-                                      text: '₹ 456',
+                                      text: '₹ ${widget.price}',
                                       style: new TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
                                  
                                 ],
