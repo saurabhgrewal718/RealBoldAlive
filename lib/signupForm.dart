@@ -35,10 +35,10 @@ class _SignupFormState extends State<SignupForm> {
     super.dispose();
   }
 
-  void _saveForm() async{
+  void _saveForm(BuildContext ctx) async{
     
     final isValid = _form.currentState.validate();
-    FocusScope.of(context).unfocus();
+    FocusScope.of(ctx).unfocus();
     if(isValid){
 
       setState(() {
@@ -68,8 +68,8 @@ class _SignupFormState extends State<SignupForm> {
         final userIdentity = prefs.getString('userId') ?? 0;
 
         //showing congratulatory Snackbar on sucesful signup
-        Scaffold.of(context).hideCurrentSnackBar();
-        Scaffold.of(context).showSnackBar(SnackBar(
+        Scaffold.of(ctx).hideCurrentSnackBar();
+        Scaffold.of(ctx).showSnackBar(SnackBar(
             backgroundColor: Colors.greenAccent,
             duration: Duration(seconds: 1),
             content: Text('Contratulations',
@@ -81,7 +81,7 @@ class _SignupFormState extends State<SignupForm> {
             ),
           ));
         //redirecting to a new page
-        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName,
+        Navigator.of(ctx).pushReplacementNamed(HomeScreen.routeName,
           arguments: authResult.user.uid
         );
         setState(() {
@@ -98,7 +98,7 @@ class _SignupFormState extends State<SignupForm> {
         setState(() {
           _isLoading = false;
         });
-        Scaffold.of(context).showSnackBar(SnackBar(
+        Scaffold.of(ctx).showSnackBar(SnackBar(
           backgroundColor: Colors.redAccent,
           content: Text(message ,
           style: GoogleFonts.openSans(
@@ -311,7 +311,7 @@ class _SignupFormState extends State<SignupForm> {
                         minWidth: double.infinity,
                         height: 60,
                         onPressed: () {
-                            _saveForm();
+                            _saveForm(context);
                         },
                         color: Colors.greenAccent,
                         elevation: 0,

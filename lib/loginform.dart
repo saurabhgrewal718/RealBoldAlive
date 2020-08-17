@@ -30,10 +30,10 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   
-  void _saveForm() async{
+  void _saveForm(BuildContext ctx) async{
         
     final isValid = _form.currentState.validate();
-    FocusScope.of(context).unfocus();
+    FocusScope.of(ctx).unfocus();
     if(isValid){
       setState(() {
       _isLoading= true;
@@ -48,32 +48,9 @@ class _LoginFormState extends State<LoginForm> {
         prefs.setString('userId', authResult.user.uid);
         
         if(authResult!=null ){
-          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+          Navigator.of(ctx).pushReplacementNamed(HomeScreen.routeName);
            
         }
-
-        // final document = Firestore.instance.collection('users/${authResult.user.uid}/personal').document('${authResult.user.uid}');
-        // final documentlist = await document.get();
-        
-        // final prefs = await SharedPreferences.getInstance();
-        // prefs.setString('userId', authResult.user.uid);
-        
-        // print('name is');
-        // print(documentlist['name']);
-        // print(prefs.getString('name'));
-        // prefs.setString('name', documentlist['name']);
-        // prefs.setString('age', documentlist['age']);
-        // prefs.setString('userProfilePicture', documentlist['profile_picture']);
-        // prefs.setString('gender', documentlist['gender']);
-        // prefs.setString('course', documentlist['course']);
-        // prefs.setString('bio', documentlist['bio']);
-        // prefs.setString('can', documentlist['can']);
-        // prefs.setString('things', documentlist['things']);
-        // prefs.setString('who', documentlist['who']);
-        // prefs.setString('instagram', documentlist['instagram']);
-        // print('this is the AUTH');            
-        // print(authResult);
-
         setState(() {
             _isLoading= false;
           });
@@ -85,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
         if(err.message != null){
           message= err.message;
         }
-        Scaffold.of(context).showSnackBar(SnackBar(
+        Scaffold.of(ctx).showSnackBar(SnackBar(
           backgroundColor: Colors.redAccent,
           content: Text(message ,
           style: GoogleFonts.openSans(
@@ -221,7 +198,7 @@ class _LoginFormState extends State<LoginForm> {
                         minWidth: double.infinity,
                         height: 60,
                         onPressed: () {
-                            _saveForm();
+                            _saveForm(context);
                             
                         },
                         color: Colors.greenAccent,
