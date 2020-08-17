@@ -25,7 +25,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false;
 
-  void _showAlert(){
+  void _showAlert(BuildContext context){
     HapticFeedback.vibrate();
     showDialog(
       context: context,
@@ -48,7 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               FlatButton(
-                onPressed: _signout, 
+                onPressed: (){
+                  _signout(context);
+                }, 
                 child: Container(
                   padding: EdgeInsets.only(top: 3, left: 3),
                   width: MediaQuery.of(context).size.width*0.23,
@@ -106,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _signout() async {
+  void _signout(BuildContext ctx) async {
     setState(() {
       _isLoading=true;
     });
@@ -115,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
     prefs.clear();
     final currentId = prefs.getString('userId');
     if(currentId == null){
-      Navigator.of(context).pushReplacementNamed(Welcome.routeName);
+      await Navigator.of(ctx).pushReplacementNamed(Welcome.routeName);
     }
     setState(() {
       _isLoading=false;
@@ -255,7 +257,9 @@ void showSettigs() {
                   child: MaterialButton(
                     minWidth: double.infinity,
                     height: 50,
-                    onPressed: _showAlert,
+                    onPressed: (){
+                      _showAlert(context);
+                    },
                     color: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
