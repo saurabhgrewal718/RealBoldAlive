@@ -24,7 +24,6 @@ class _PlaceorderState extends State<Placeorder> {
               children: <Widget>[
                 Headofapp(title: 'Bold Alive',subtitle: 'Fill In Details',),
                 PlaceorderForm(),             
-                
                 SizedBox(
                   height: 30,
                 )

@@ -313,7 +313,9 @@ void showMenu() {
                                     ),
                                     itemBuilder: (context, index) => SettingsDrawer(
                                           catagories: catagories[index],
-                                          press: () {},
+                                          press: () {
+                                          
+                                          },
                                         )),
                               ),
                           ],

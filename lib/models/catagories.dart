@@ -10,11 +10,11 @@ class Catagories {
 List<Catagories> catagories = [
   
   Catagories(
-      title: "Hang Top",
+      title: "Mugs",
       image: "assets/images/bag_3.png",
   ),
   Catagories(
-      title: "Old Fashion",
+      title: "Tshirts",
       image: "assets/images/bag_4.png",
   ),
   Catagories(

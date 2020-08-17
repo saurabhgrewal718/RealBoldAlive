@@ -1,5 +1,7 @@
+import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:BoldAlive/models/catagories.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../models/Product.dart';
 
 import '../../../constants.dart';
@@ -15,8 +17,11 @@ class SettingsDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profiles = Provider.of<ProductModel>(context,listen: false);
     return GestureDetector(
-      onTap: press,
+      onTap: (){
+        profiles.fetchCatagories("${catagories.title}").then((value) => Navigator.of(context).pop());
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
