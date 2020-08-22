@@ -229,6 +229,7 @@ void showSettigs() {
                     minWidth: double.infinity,
                     height: 50,
                     onPressed: (){
+                      Navigator.of(context).pop();
                       Navigator.of(context).pushNamed(MyOrders.routeName);
                     },
                     color: Colors.white,
@@ -319,9 +320,7 @@ void showMenu() {
                                     ),
                                     itemBuilder: (context, index) => SettingsDrawer(
                                           catagories: catagories[index],
-                                          press: () {
-                                          
-                                          },
+                                          press: () {},
                                         )),
                               ),
                           ],

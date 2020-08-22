@@ -2,7 +2,6 @@ import 'package:BoldAlive/models/ProductProvider.dart';
 import 'package:BoldAlive/models/catagories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../models/Product.dart';
 
 import '../../../constants.dart';
 
@@ -28,10 +27,7 @@ class SettingsDrawer extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(kDefaultPaddin),
-              // For  demo we use fixed height  and width
-              // Now we dont need them
-              // height: 180,
-              // width: 160,
+             
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(16),
