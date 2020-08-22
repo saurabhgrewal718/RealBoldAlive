@@ -20,7 +20,9 @@ class CartScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       centerTitle: true,
-      leading: IconButton(icon: Icon(Icons.arrow_back),color:Colors.black45, onPressed: (){}),
+      leading: IconButton(icon: Icon(Icons.arrow_back),color:Colors.black45, onPressed: (){
+        Navigator.of(context).pop();
+      }),
       title: Text('My Cart', style: Theme.of(context)
                   .textTheme
                   .headline5
