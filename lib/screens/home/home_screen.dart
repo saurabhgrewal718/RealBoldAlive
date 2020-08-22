@@ -3,9 +3,9 @@ import 'package:BoldAlive/models/catagories.dart';
 import 'package:BoldAlive/screens/details/components/badge.dart';
 import 'package:BoldAlive/screens/edit/editScreen.dart';
 import 'package:BoldAlive/screens/home/components/settingdrawer.dart';
+import 'package:BoldAlive/screens/orders/myorders.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:BoldAlive/welcome.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -228,7 +228,9 @@ void showSettigs() {
                   child: MaterialButton(
                     minWidth: double.infinity,
                     height: 50,
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.of(context).pushNamed(MyOrders.routeName);
+                    },
                     color: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

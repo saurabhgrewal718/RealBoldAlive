@@ -11,30 +11,27 @@ List<Catagories> catagories = [
   
   Catagories(
       title: "Mugs",
-      image: "assets/images/bag_3.png",
+      image: "assets/images/mug.jpg",
   ),
   Catagories(
-      title: "Tshirts",
-      image: "assets/images/bag_4.png",
+      title: "Hoodie",
+      image: "assets/images/hoodie.jpg",
   ),
   Catagories(
-      title: "Office Code",
-      image: "assets/images/bag_5.png",
+      title: "Phone Cases",
+      image: "assets/images/phone.jpg",
   ),
   Catagories(
-    title: "Office Code",
-    image: "assets/images/bag_6.png",
+    title: "T Shirt",
+    image: "assets/images/tshirt.jpg",
   ),
   Catagories(
-    title: "Office Code",
-    image: "assets/images/bag_6.png",
+    title: "Photo Frames",
+    image: "assets/images/wood.jpg",
   ),
-  Catagories(
-    title: "Office Code",
-    image: "assets/images/bag_6.png",
-  ),
+  // Catagories(
+  //   title: "Pillow",
+  //   image: "assets/images/pillow.png",
+  // ),
  
 ];
-
-String dummyText =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";
