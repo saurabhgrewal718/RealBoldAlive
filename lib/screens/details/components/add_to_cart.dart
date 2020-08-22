@@ -85,9 +85,9 @@ class AddToCart extends StatelessWidget {
             ],
           ),
           SizedBox(height: 30,),
-          Container(
-            child: Text('data da ta dat ada tada tadata',style: TextStyle(fontWeight: FontWeight.bold),),
-          )
+          // Container(
+          //   child: Text('data da ta dat ada tada tadata',style: TextStyle(fontWeight: FontWeight.bold),),
+          // )
         ],
       ),
     );

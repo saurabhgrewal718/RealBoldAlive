@@ -19,7 +19,7 @@ class ProductTitleWithImage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Aristocratic Hand Bag",
+            "${product.catagory}",
             style: TextStyle(color: Colors.white),
           ),
           Text(
@@ -46,8 +46,8 @@ class ProductTitleWithImage extends StatelessWidget {
               ),
               
               Container(
-                margin: EdgeInsets.only(right:50),
-                height: 150,
+                margin: EdgeInsets.only(right:20,top:20),
+                height: 180,
                 width: 150,
                 child: Hero(
                   tag: "${product.title}",

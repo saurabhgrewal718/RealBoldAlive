@@ -14,7 +14,7 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> mylist = ['https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg','https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg','https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg','https://cocooil.com.au/wp-content/uploads/2017/06/TanningOil_New-600x600.jpg'];
+    List<dynamic> mylist = product.imgDetail;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
       child: Column(

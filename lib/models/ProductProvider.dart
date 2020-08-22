@@ -15,7 +15,7 @@ Future<void> fetchAndSetProducts() async {
   
   Firestore.instance
   .collection("products")
-  .limit(50)
+  .where('hidden', isEqualTo: false)
   .getDocuments()
   .then((querySnapshot) {
   querySnapshot.documents.forEach((result) {
@@ -26,7 +26,9 @@ Future<void> fetchAndSetProducts() async {
           price: int.parse(_myprice),
           description: result.data['description'],
           image: result.data['image'],
-          id:result.data['id']
+          id:result.data['id'],
+          catagory: result.data['catagory'],
+          imgDetail: result.data['imgDetail'],
         )
       );
  
@@ -49,6 +51,7 @@ Future<void> fetchCatagories(String catagory) async {
   print(catagory);
   Firestore.instance
   .collection("products")
+  .where('hidden', isEqualTo: false)
   .where("catagory", isEqualTo: "$catagory")
   .getDocuments()
   .then((querySnapshot) {
@@ -60,7 +63,9 @@ Future<void> fetchCatagories(String catagory) async {
           price: int.parse(_myprice),
           description: result.data['description'],
           image: result.data['image'],
-          id:result.data['id']
+          id:result.data['id'],
+          catagory: result.data['catagory'],
+          imgDetail: result.data['imgDetail'],
         )
       );
  
