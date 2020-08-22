@@ -1,6 +1,7 @@
 import 'package:BoldAlive/models/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/cart.dart' show Cart;
@@ -16,14 +17,21 @@ class CartScreen extends StatelessWidget {
     final totalamount = cart.totalAmount.toStringAsFixed(2);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Cart'),
-      ),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      centerTitle: true,
+      leading: IconButton(icon: Icon(Icons.arrow_back),color:Colors.black45, onPressed: (){}),
+      title: Text('My Cart', style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  .copyWith(fontWeight: FontWeight.bold),),
+    ),
       body: Column(
         children: <Widget>[
           Card(
             margin: EdgeInsets.all(15),
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -35,12 +43,14 @@ class CartScreen extends StatelessWidget {
                   Chip(
                     label: Text(
                       '\₹ $totalamount',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryTextTheme.title.color,
-                      ),
+                      style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.grey[100],
                   ),
+                  Spacer(),
                   OrderButton(cart: cart)
                 ],
               ),
@@ -56,6 +66,7 @@ class CartScreen extends StatelessWidget {
                     cart.items.values.toList()[i].price,
                     cart.items.values.toList()[i].quantity,
                     cart.items.values.toList()[i].title,
+                    
                   ),
             ),
           )
@@ -81,27 +92,40 @@ class _OrderButtonState extends State<OrderButton> {
   var _isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      child: _isLoading ? Center(child:CircularProgressIndicator()) : Text('ORDER NOW'),
-      onPressed: (widget.cart.totalAmount <=0 || _isLoading) ? null : () async {
-        setState(() {
-          _isLoading = true;
-        });
-        try{
-          await Provider.of<Orders>(context, listen: false).addOrder(widget.cart.items.values.toList(),widget.cart.totalAmount);
-          widget.cart.clear();
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.greenAccent,
+        borderRadius: BorderRadius.circular(50),
+        border: Border(
+          bottom: BorderSide(color: Colors.black),
+          top: BorderSide(color: Colors.black),
+          left: BorderSide(color: Colors.black),
+          right: BorderSide(color: Colors.black),
+        )
+      ),
+      child: FlatButton(
+        child: _isLoading ? Center(child:CircularProgressIndicator()) : Text('ORDER NOW'),
+        onPressed: (widget.cart.totalAmount <=0 || _isLoading) ? null : () async {
           setState(() {
-          _isLoading = false;
-        });
+            _isLoading = true;
+          });
+          try{
+            await Provider.of<Orders>(context, listen: false).addOrder(widget.cart.items.values.toList(),widget.cart.totalAmount);
+            widget.cart.clear();
+            setState(() {
+            _isLoading = false;
+          });
 
-        }on PlatformException catch(err){
-          print(err);
-          setState(() {
-          _isLoading = false;
-        });
-        }    
-      },
-      textColor: Theme.of(context).primaryColor,
+          }on PlatformException catch(err){
+            print(err);
+            setState(() {
+            _isLoading = false;
+          });
+          }    
+        },
+        textColor: Colors.black,
+        
+      ),
     );
   }
 }

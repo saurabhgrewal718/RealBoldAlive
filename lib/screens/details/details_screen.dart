@@ -58,7 +58,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               icon: SvgPicture.asset(
                 "assets/icons/cart.svg",
                 // By default our  icon color is white
-                color: kTextColor,
+                color: Colors.white,
               ),
               onPressed: () {
                 Navigator.of(context).pushNamed(CartScreen.routeName);

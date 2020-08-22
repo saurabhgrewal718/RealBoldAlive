@@ -9,6 +9,7 @@ class CartItem extends StatelessWidget {
   final int price;
   final int quantity;
   final String title;
+  
 
   CartItem(
     this.id,
@@ -20,6 +21,11 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('id : $id');
+    print('product id : $productId');
+    print('price : $price');
+    print('quantity : $quantity');
+    print('title : $title');
     return Dismissible(
       key: ValueKey(id),
       background: Container(
@@ -69,16 +75,19 @@ class CartItem extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(8),
           child: ListTile(
-            leading: CircleAvatar(
-              child: Padding(
-                padding: EdgeInsets.all(5),
-                child: FittedBox(
-                  child: Text('\$$price'),
-                ),
+            contentPadding: EdgeInsets.all(15),
+            leading: Chip(
+              label: Text(
+                '\₹ ${(price * quantity)}',
+                style: Theme.of(context)
+                .textTheme
+                .headline5
+                .copyWith(fontWeight: FontWeight.bold),
               ),
+              backgroundColor: Colors.grey[100],
             ),
             title: Text(title),
-            subtitle: Text('Total: \$${(price * quantity)}'),
+            subtitle: Text('Price: \₹ $price'),
             trailing: Text('$quantity x'),
           ),
         ),
