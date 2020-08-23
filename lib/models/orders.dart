@@ -116,26 +116,47 @@ class Orders with ChangeNotifier {
         'quantity':cp.quantity,
         'price':cp.price
       }).toList();
-    print(amount);
-    print(products);
     
     final document = Firestore.instance.collection('users').document(userId);
     final documentlist = await document.get();
 
     final double newAmount = documentlist['cartamount'];
     final List<dynamic> newProducts = documentlist['cartitems'];
+    
+    if(newProducts!=null ){
+      if(products.length!=0){
+        print(products.length);
+        print(newProducts.length);
+        print('${products[0]['title']} this is the array ${newProducts[0]['title']}');
+        for(int i=0 ; i<products.length ; i++){
+          for(int j = 0 ; j<newProducts.length ; j++){
+            if(products[i]['title'] == newProducts[j]['title']){
+              print('matched');
+              newProducts[j]['quantity'] = newProducts[j]['quantity'] + 1;
+              
+            }
+          } 
+        }
+      }else{
+        print('no new products aded ');
+      }
+      
+    }else{
+      print('no data from internet found !');
+    }
 
-    print('newwwwwwwwwws');
+
     print(newProducts);
+    print(' products $products');
 
     if(newProducts!=null && newAmount != null){
-      products.forEach((element) => newProducts.add(element));
-      print('newproducts');
-      print(newProducts);
-      Firestore.instance.collection('users').document(userId).updateData({
-        'cartamount': amount + newAmount,
-        'cartitems': newProducts
-      });
+      if(products!=null){
+        products.forEach((element) => newProducts.add(element));      
+        Firestore.instance.collection('users').document(userId).updateData({
+          'cartamount': amount + newAmount,
+          'cartitems': newProducts
+        });
+      }
     }else{
       Firestore.instance.collection('users').document(userId).updateData({
         'cartamount': amount,

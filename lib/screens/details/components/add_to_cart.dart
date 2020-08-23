@@ -1,14 +1,16 @@
 import 'package:BoldAlive/screens/details/components/placeorder.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../models/Product.dart';
 import '../../../models/cart.dart';
 import '../../../constants.dart';
 
-class AddToCart extends StatelessWidget {
+class AddToCart extends StatefulWidget {
   const AddToCart({
     Key key,
     @required this.product,
@@ -16,6 +18,31 @@ class AddToCart extends StatelessWidget {
 
   final Products product;
 
+  @override
+  _AddToCartState createState() => _AddToCartState();
+}
+
+class _AddToCartState extends State<AddToCart> {
+
+  bool showcartbutton = true;
+
+  @override
+  void didChangeDependencies() async{
+    final prefs = await SharedPreferences.getInstance();
+    final mylist = prefs.getStringList('mycartlist');
+    if(mylist!=null){
+      mylist.forEach((element) {
+        if(element == widget.product.title){
+          setState(() {
+            showcartbutton = false;
+          });  
+        }
+      });
+    }
+
+    super.didChangeDependencies();
+  }
+  
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context, listen: false);
@@ -35,7 +62,7 @@ class AddToCart extends StatelessWidget {
                     color: Colors.blueGrey,
                   ),
                 ),
-                child: IconButton(
+                child: showcartbutton == true ? IconButton(
                   icon: SvgPicture.asset(
                     "assets/icons/add_to_cart.svg",
                     color: Colors.blueGrey,
@@ -43,17 +70,22 @@ class AddToCart extends StatelessWidget {
                   onPressed: () {
                     HapticFeedback.vibrate();
                     Fluttertoast.showToast(
-                      msg: "Products Added to Cart",
+                      msg: "Product Added to Cart",
                       toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
+                      gravity: ToastGravity.BOTTOM,
                       timeInSecForIosWeb: 1,
                       backgroundColor: Colors.greenAccent,
                       textColor: Colors.black,
                       fontSize: 16.0
                     );
-                    cart.addItem(product.id,product.price,product.title);
+                    cart.addItem(widget.product.id,widget.product.price,widget.product.title);
                     print(cart);
                   },
+                ) 
+                : 
+                IconButton(
+                  icon: Icon(Icons.add_shopping_cart),
+                  onPressed: null,
                 ),
               ),
               Expanded(
@@ -65,9 +97,9 @@ class AddToCart extends StatelessWidget {
                     color: Colors.blueGrey,
                     onPressed: () {
                       Navigator.of(context).pushNamed(Placeorder.routeName,arguments: {
-                        'productId':product.id,
-                        'productPrice':product.price,
-                        'productTitle':product.title
+                        'productId':widget.product.id,
+                        'productPrice':widget.product.price,
+                        'productTitle':widget.product.title
                       });
                     },
                     child: Text(

@@ -36,7 +36,7 @@ class Welcome extends StatelessWidget {
               ),
               Container(
                 height: MediaQuery.of(context).size.height / 3,
-                child : Image.asset('assets/images/bag_1.png')
+                child : Image.asset('assets/images/hoodie.jpg')
                 
               ),
               Column(

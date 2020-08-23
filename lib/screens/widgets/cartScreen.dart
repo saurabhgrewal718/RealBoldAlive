@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:BoldAlive/models/orders.dart';
+import 'package:BoldAlive/screens/widgets/mycartitem.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,9 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
 
 bool init = false;
+double amount;
+List<dynamic> cartProducts;
+bool isloading = false;
 
 @override
   void initState() {
@@ -32,6 +36,17 @@ bool init = false;
     if(init == true){
       final cart = Provider.of<Cart>(context);
       await Provider.of<Orders>(context, listen: false).uploadCart(cart.items.values.toList(),cart.totalAmount);
+
+      final prefs = await SharedPreferences.getInstance();
+      final userId = prefs.getString('userId');
+      final document = Firestore.instance.collection('users').document(userId);
+      final documentlist = await document.get();
+      setState(() {
+        amount = documentlist['cartamount'];
+        cartProducts = documentlist['cartitems'];
+      });
+      // print('cartproducts');
+      // print(cartProducts);
     }
     init = false;
     super.didChangeDependencies();
@@ -40,7 +55,7 @@ bool init = false;
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    final totalamount = cart.totalAmount.toStringAsFixed(2);
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +70,7 @@ bool init = false;
                   .headline5
                   .copyWith(fontWeight: FontWeight.bold),),
     ),
-      body: Column(
+      body: cartProducts == null ? Container(child: Center(child: CircularProgressIndicator(backgroundColor: Colors.greenAccent))) : Column(
         children: <Widget>[
           Card(
             margin: EdgeInsets.all(15),
@@ -71,7 +86,7 @@ bool init = false;
                   Spacer(),
                   Chip(
                     label: Text(
-                      '\₹ $totalamount',
+                      '\₹ $amount',
                       style: Theme.of(context)
                       .textTheme
                       .headline5
@@ -86,17 +101,19 @@ bool init = false;
             ),
           ),
           SizedBox(height: 10),
+          
           Expanded(
             child: ListView.builder(
-              itemCount: cart.items.length,
-              itemBuilder: (ctx, i) => CartItem(
-                    cart.items.values.toList()[i].id,
-                    cart.items.keys.toList()[i],
-                    cart.items.values.toList()[i].price,
-                    cart.items.values.toList()[i].quantity,
-                    cart.items.values.toList()[i].title,
-                    
-                  ),
+              itemCount: cartProducts.length,
+              itemBuilder: (ctx, i) => MyCartItem(
+                cartProducts[i]['id'],
+                cartProducts[i]['price'],
+                i.toString(), 
+                cartProducts[i]['quantity'],
+                cartProducts[i]['title'],
+                               
+              ),
+              
             ),
           )
         ],

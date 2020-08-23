@@ -7,6 +7,7 @@ import 'package:BoldAlive/screens/myprofile/myprofile.dart';
 import 'package:BoldAlive/screens/orders/myorders.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:BoldAlive/welcome.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,40 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false;
+  bool init = false;
+
+  @override
+  void initState() {
+    init = true;
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() async{
+    if(init ==true){
+      final prefs  = await SharedPreferences.getInstance();
+      final userId = prefs.getString('userId');
+      await Firestore.instance.collection('users')
+      .document(userId)
+      .get()
+      .then((value) {
+        if(value['cartitems']!=null){
+          List<String> myarray = new List(value['cartitems'].length);
+          for(int i=0;i<value['cartitems'].length;i++){
+            myarray[i] = value['cartitems'][i]['title']; 
+          }
+          prefs.setStringList('mycartlist', myarray);
+        }else{
+          List<String> myarray = [];
+          prefs.setStringList('mycartlist', myarray);
+        }
+
+      });
+
+    }
+    init = false;
+    super.didChangeDependencies();
+  }
 
   void _showAlert(BuildContext context){
     HapticFeedback.vibrate();

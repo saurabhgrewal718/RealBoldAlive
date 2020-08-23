@@ -107,7 +107,7 @@ class _UploadImageState extends State<UploadImage> {
         ),
       );
     }else{
-      return Image.asset('assets/images/bag_1.png');
+      return Image.asset('assets/images/hoodie.jpg');
     }
   }
 
