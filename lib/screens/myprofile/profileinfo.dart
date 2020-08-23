@@ -140,6 +140,18 @@ class _ProfileInfoState extends State<ProfileInfo> {
                     ],
                   ),
                 ),
+                SizedBox(height:30),
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        child: Text('Gifting Address'),
+                      ),
+                      IconButton(icon: Icon(Icons.edit), onPressed: null)
+                    ],
+                  ),
+                ),
               ],
             )
           ],
