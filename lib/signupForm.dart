@@ -181,7 +181,7 @@ class _SignupFormState extends State<SignupForm> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('Username', style: TextStyle(
+                          Text('Name', style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.black87

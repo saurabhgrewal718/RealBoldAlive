@@ -3,6 +3,7 @@ import 'package:BoldAlive/models/catagories.dart';
 import 'package:BoldAlive/screens/details/components/badge.dart';
 import 'package:BoldAlive/screens/edit/editScreen.dart';
 import 'package:BoldAlive/screens/home/components/settingdrawer.dart';
+import 'package:BoldAlive/screens/myprofile/myprofile.dart';
 import 'package:BoldAlive/screens/orders/myorders.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:BoldAlive/welcome.dart';
@@ -199,13 +200,16 @@ void showSettigs() {
                   child: MaterialButton(
                     minWidth: double.infinity,
                     height: 50,
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed(MyProfile.routeName);
+                    },
                     color: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)
                     ),
-                    child: Text('TextButton', style: TextStyle(
+                    child: Text('My Profile', style: TextStyle(
                       fontWeight: FontWeight.w600, 
                       fontSize: 18,
                       color: Colors.black
