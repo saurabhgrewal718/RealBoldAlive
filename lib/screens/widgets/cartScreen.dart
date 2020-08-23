@@ -1,20 +1,47 @@
+import 'dart:async';
+
 import 'package:BoldAlive/models/orders.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/cart.dart' show Cart;
 import './cartItem.dart';
-import './orderpage.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   static const routeName = '/cart';
+
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+
+bool init = false;
+
+@override
+  void initState() {
+    init = true;
+    super.initState();
+  }
+
+@override
+  void didChangeDependencies() async {
+    if(init == true){
+      final cart = Provider.of<Cart>(context);
+      await Provider.of<Orders>(context, listen: false).uploadCart(cart.items.values.toList(),cart.totalAmount);
+    }
+    init = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     final totalamount = cart.totalAmount.toStringAsFixed(2);
+
     return Scaffold(
       appBar: AppBar(
       backgroundColor: Colors.white,

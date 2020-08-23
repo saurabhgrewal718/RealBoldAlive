@@ -102,4 +102,29 @@ class Orders with ChangeNotifier {
     // );
     notifyListeners();
   }
+
+ Future <void> uploadCart(List<CartItem> cartProducts, double total) async {
+    
+    final prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getString('userId');
+
+    final amount = total;
+    final products = cartProducts.map((cp) => {
+        'id':cp.id,
+        'title':cp.title,
+        'quantity':cp.quantity,
+        'price':cp.price
+      }).toList();
+    print(amount);
+    print(products);
+    Firestore.instance.collection('users').document(userId).updateData({
+      'cartamount': amount,
+      'cartitems':products
+    });
+  }
+
+
+
 }
+
+
