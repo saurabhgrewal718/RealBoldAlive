@@ -13,6 +13,7 @@ class OrderItem {
   final List<CartItem> products;
   final DateTime dateTime;
 
+
   OrderItem({
     @required this.id,
     @required this.amount,
@@ -103,7 +104,7 @@ class Orders with ChangeNotifier {
     notifyListeners();
   }
 
- Future <void> uploadCart(List<CartItem> cartProducts, double total) async {
+ Future uploadCart(List<CartItem> cartProducts, double total) async {
     
     final prefs = await SharedPreferences.getInstance();
     final userId = prefs.getString('userId');
@@ -117,10 +118,31 @@ class Orders with ChangeNotifier {
       }).toList();
     print(amount);
     print(products);
-    Firestore.instance.collection('users').document(userId).updateData({
-      'cartamount': amount,
-      'cartitems':products
-    });
+    
+    final document = Firestore.instance.collection('users').document(userId);
+    final documentlist = await document.get();
+
+    final double newAmount = documentlist['cartamount'];
+    final List<dynamic> newProducts = documentlist['cartitems'];
+
+    print('newwwwwwwwwws');
+    print(newProducts);
+
+    if(newProducts!=null && newAmount != null){
+      products.forEach((element) => newProducts.add(element));
+      print('newproducts');
+      print(newProducts);
+      Firestore.instance.collection('users').document(userId).updateData({
+        'cartamount': amount + newAmount,
+        'cartitems': newProducts
+      });
+    }else{
+      Firestore.instance.collection('users').document(userId).updateData({
+        'cartamount': amount,
+        'cartitems': products
+      });
+    }
+
   }
 
 
