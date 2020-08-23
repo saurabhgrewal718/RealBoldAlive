@@ -28,6 +28,7 @@ class _AddToCartState extends State<AddToCart> {
 
   @override
   void didChangeDependencies() async{
+    print('i am runing');
     final prefs = await SharedPreferences.getInstance();
     final mylist = prefs.getStringList('mycartlist');
     if(mylist!=null){
