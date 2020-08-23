@@ -51,22 +51,23 @@ class _AddToCartState extends State<AddToCart> {
       child: Column(
         children: <Widget>[
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              showcartbutton == true ? 
               Container(
-                margin: EdgeInsets.only(right: kDefaultPaddin),
-                height: 50,
-                width: 58,
+                width: MediaQuery.of(context).size.width *0.4,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                    color: Colors.blueGrey,
-                  ),
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border(
+                    bottom: BorderSide(color: Colors.black),
+                    top: BorderSide(color: Colors.black),
+                    left: BorderSide(color: Colors.black),
+                    right: BorderSide(color: Colors.black),
+                  )
                 ),
-                child: showcartbutton == true ? IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/add_to_cart.svg",
-                    color: Colors.blueGrey,
-                  ),
+                child: MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
                   onPressed: () {
                     HapticFeedback.vibrate();
                     Fluttertoast.showToast(
@@ -79,40 +80,84 @@ class _AddToCartState extends State<AddToCart> {
                       fontSize: 16.0
                     );
                     cart.addItem(widget.product.id,widget.product.price,widget.product.title);
-                    print(cart);
+                    setState(() {
+                      showcartbutton = false;
+                    });
+                    
                   },
-                ) 
-                : 
-                IconButton(
-                  icon: Icon(Icons.add_shopping_cart),
-                  onPressed: null,
-                ),
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: 50,
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18)),
-                    color: Colors.blueGrey,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(Placeorder.routeName,arguments: {
-                        'productId':widget.product.id,
-                        'productPrice':widget.product.price,
-                        'productTitle':widget.product.title
-                      });
-                    },
-                    child: Text(
-                      "Buy  Now".toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                  color: Colors.orangeAccent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)
                   ),
+                  child: Text("Add To Cart", style: TextStyle(
+                    fontWeight: FontWeight.w600, 
+                    fontSize: 18
+                  ),),
+                ),
+              )
+              :
+              Container(
+                width: MediaQuery.of(context).size.width *0.4,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border(
+                    bottom: BorderSide(color: Colors.black),
+                    top: BorderSide(color: Colors.black),
+                    left: BorderSide(color: Colors.black),
+                    right: BorderSide(color: Colors.black),
+                  )
+                ),
+                child: MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  onPressed: () {
+                      
+                  },
+                  color: Colors.greenAccent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: Text("Go To Cart", style: TextStyle(
+                    fontWeight: FontWeight.w600, 
+                    fontSize: 18
+                  ),),
                 ),
               ),
+              Container(
+                width: MediaQuery.of(context).size.width *0.4,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border(
+                    bottom: BorderSide(color: Colors.black),
+                    top: BorderSide(color: Colors.black),
+                    left: BorderSide(color: Colors.black),
+                    right: BorderSide(color: Colors.black),
+                  )
+                ),
+                child: MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Placeorder.routeName,arguments: {
+                      'productId':widget.product.id,
+                      'productPrice':widget.product.price,
+                      'productTitle':widget.product.title
+                    });
+                  },
+                  color: Colors.yellow[200],
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: Text("Buy Now", style: TextStyle(
+                    fontWeight: FontWeight.w600, 
+                    fontSize: 18
+                  ),),
+                ),
+              ),
+              
               
             ],
           ),
