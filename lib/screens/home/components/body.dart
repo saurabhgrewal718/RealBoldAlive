@@ -24,25 +24,7 @@ class _BodyState extends State<Body> {
       Provider.of<ProductModel>(context,listen: false).fetchAndSetProducts();
     }
     _inIt = false;
-    print('i ran');
-    final prefs  = await SharedPreferences.getInstance();
-      final userId = prefs.getString('userId');
-      await Firestore.instance.collection('users')
-      .document(userId)
-      .get()
-      .then((value) {
-        if(value['cartitems']!=null){
-          List<String> myarray = new List(value['cartitems'].length);
-          for(int i=0; i<value['cartitems'].length;i++){
-            myarray[i] = value['cartitems'][i]['title']; 
-          }
-          prefs.setStringList('mycartlist', myarray);
-        }else{
-          List<String> myarray = [];
-          prefs.setStringList('mycartlist', myarray);
-        }
-
-      });
+    
 
     super.didChangeDependencies();
   }

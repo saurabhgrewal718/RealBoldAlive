@@ -142,7 +142,7 @@ class Orders with ChangeNotifier {
     //   }
       
     // }else{
-    //   print('no data from internet found !');
+    //   print('no data from internet found ');
     // }
 
 
@@ -152,13 +152,13 @@ class Orders with ChangeNotifier {
     if(newProducts!=null && newAmount != null){
       if(products!=null){
         products.forEach((element) => newProducts.add(element));      
-        Firestore.instance.collection('users').document(userId).updateData({
+        Firestore.instance.collection('cart').document(userId).setData({
           'cartamount': amount + newAmount,
           'cartitems': newProducts
         });
       }
     }else{
-      Firestore.instance.collection('users').document(userId).updateData({
+      Firestore.instance.collection('cart').document(userId).setData({
         'cartamount': amount,
         'cartitems': products
       });

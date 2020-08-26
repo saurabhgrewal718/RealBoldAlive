@@ -1,4 +1,6 @@
+import 'package:BoldAlive/models/orders.dart';
 import 'package:BoldAlive/screens/details/components/placeorder.dart';
+import 'package:BoldAlive/screens/widgets/cartScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,18 +30,24 @@ class _AddToCartState extends State<AddToCart> {
 
   @override
   void didChangeDependencies() async{
-    print('i am runing');
-    final prefs = await SharedPreferences.getInstance();
-    final mylist = prefs.getStringList('mycartlist');
-    if(mylist!=null){
-      mylist.forEach((element) {
-        if(element == widget.product.title){
-          setState(() {
-            showcartbutton = false;
-          });  
+    final prefs  = await SharedPreferences.getInstance();
+      final userId = prefs.getString('userId');
+      await Firestore.instance.collection('cart')
+      .document(userId)
+      .get()
+      .then((value) {
+        List<dynamic> myArray = value['cartitems'];
+        if(myArray!=null){
+          for(int i=0;i<myArray.length;i++){
+            if(myArray[i]['title'] == widget.product.title){
+              setState(() {
+                showcartbutton = false;
+              });
+            }
+          }
         }
+
       });
-    }
 
     super.didChangeDependencies();
   }
@@ -47,6 +55,7 @@ class _AddToCartState extends State<AddToCart> {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context, listen: false);
+    
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
       child: Column(
@@ -69,7 +78,7 @@ class _AddToCartState extends State<AddToCart> {
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () {
+                  onPressed: () async{
                     HapticFeedback.vibrate();
                     Fluttertoast.showToast(
                       msg: "Product Added to Cart",
@@ -84,6 +93,7 @@ class _AddToCartState extends State<AddToCart> {
                     setState(() {
                       showcartbutton = false;
                     });
+                    await Provider.of<Orders>(context, listen: false).uploadCart(cart.items.values.toList(),cart.totalAmount);
                     
                   },
                   color: Colors.orangeAccent,
@@ -113,7 +123,8 @@ class _AddToCartState extends State<AddToCart> {
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () {
-                      
+                    HapticFeedback.vibrate();
+                    Navigator.of(context).pushNamed(CartScreen.routeName);
                   },
                   color: Colors.greenAccent,
                   elevation: 0,

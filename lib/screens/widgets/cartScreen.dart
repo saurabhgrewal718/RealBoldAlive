@@ -34,13 +34,11 @@ bool isloading = false;
 @override
   void didChangeDependencies() async {
     if(init == true){
-      final cart = Provider.of<Cart>(context);
-      await Provider.of<Orders>(context, listen: false).uploadCart(cart.items.values.toList(),cart.totalAmount);
-
       final prefs = await SharedPreferences.getInstance();
       final userId = prefs.getString('userId');
-      final document = Firestore.instance.collection('users').document(userId);
+      final document = Firestore.instance.collection('cart').document(userId);
       final documentlist = await document.get();
+      print(documentlist);
       setState(() {
         amount = documentlist['cartamount'];
         cartProducts = documentlist['cartitems'];
