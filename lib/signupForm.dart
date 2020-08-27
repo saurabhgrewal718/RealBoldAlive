@@ -190,7 +190,7 @@ class _SignupFormState extends State<SignupForm> {
                           TextFormField(
                             validator: (value){
                               if(value.isEmpty || value.length <4){
-                                return "Username Must have Alteast 4 Characters";
+                                return "Name Must have Alteast 4 Characters";
                               }
                               return null;
                             },
