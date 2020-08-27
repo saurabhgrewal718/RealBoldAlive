@@ -39,10 +39,16 @@ bool isloading = false;
       final document = Firestore.instance.collection('cart').document(userId);
       final documentlist = await document.get();
       print(documentlist);
-      setState(() {
-        amount = documentlist['cartamount'];
-        cartProducts = documentlist['cartitems'];
-      });
+      if(documentlist.data!=null){
+        setState(() {
+          amount = documentlist['cartamount'];
+          cartProducts = documentlist['cartitems'];
+        });
+      }else{
+        amount = 0;
+        cartProducts = [];
+      }
+
       // print('cartproducts');
       // print(cartProducts);
     }
@@ -68,7 +74,7 @@ bool isloading = false;
                   .headline5
                   .copyWith(fontWeight: FontWeight.bold),),
     ),
-      body: cartProducts == null ? Container(child: Center(child: CircularProgressIndicator(backgroundColor: Colors.greenAccent))) : Column(
+      body: cartProducts==null ? Container(child: Center(child:Text('No Products Added to Cart')),) : Column(
         children: <Widget>[
           Card(
             margin: EdgeInsets.all(15),

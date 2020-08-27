@@ -36,13 +36,15 @@ class _AddToCartState extends State<AddToCart> {
       .document(userId)
       .get()
       .then((value) {
-        List<dynamic> myArray = value['cartitems'];
-        if(myArray!=null){
-          for(int i=0;i<myArray.length;i++){
-            if(myArray[i]['title'] == widget.product.title){
-              setState(() {
-                showcartbutton = false;
-              });
+        if(value.data!=null){
+          List<dynamic> myArray = value['cartitems'];
+          if(myArray!=null){
+            for(int i=0;i<myArray.length;i++){
+              if(myArray[i]['title'] == widget.product.title){
+                setState(() {
+                  showcartbutton = false;
+                });
+              }
             }
           }
         }
