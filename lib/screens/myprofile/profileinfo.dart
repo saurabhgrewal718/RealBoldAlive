@@ -99,7 +99,7 @@ void _showAlert(BuildContext context,String question,int id) {
                                     return null;
                                   },
                                   textInputAction: TextInputAction.done,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                                     enabledBorder: OutlineInputBorder(
@@ -231,7 +231,14 @@ void _showAlert(BuildContext context,String question,int id) {
                               minWidth: MediaQuery.of(context).size.width*0.5,
                               height: 60,
                               onPressed: () {
-                                  
+                                bool isvalid = _form.currentState.validate();
+                                if(isvalid){
+                                  _form.currentState.save();
+                                  print(phone);
+                                  FocusScope.of(context).unfocus();
+                                  Navigator.of(context).pop();
+                                }
+                               
                               },
                               color: Colors.greenAccent,
                               elevation: 0,
