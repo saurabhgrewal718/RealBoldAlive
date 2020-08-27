@@ -10,6 +10,7 @@ import 'package:BoldAlive/screens/edit/offerings/hoodie.dart';
 import 'package:BoldAlive/screens/edit/offerings/kitchen.dart';
 import 'package:BoldAlive/screens/edit/offerings/mugs.dart';
 import 'package:BoldAlive/screens/edit/uploadImage.dart';
+import 'package:BoldAlive/screens/myprofile/addaddress.dart';
 import 'package:BoldAlive/screens/myprofile/myprofile.dart';
 import 'package:BoldAlive/screens/orders/myorders.dart';
 import 'package:BoldAlive/screens/widgets/cartScreen.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
           Placeorder.routeName : (ctx) => Placeorder(),
           MyOrders.routeName : (ctx) => MyOrders(),
           MyProfile.routeName : (ctx) => MyProfile(),
+          AddAddress.routeName : (ctx) => AddAddress(),
 
           //the various screen for conditional rendering
           Hoodie.routeName : (ctx) => Hoodie(),

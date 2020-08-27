@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'addaddress.dart';
+
 class ProfileInfo extends StatefulWidget {
 
   @override
@@ -371,22 +373,14 @@ void _showAlert(BuildContext context,String question,int id) {
                       Container(
                         child: Text('Address'),
                       ),
-                      IconButton(icon: Icon(Icons.edit), onPressed: (){_showAlert(context,'My Address is ',3);})
+                      IconButton(icon: Icon(Icons.edit), onPressed: (){
+                        Navigator.of(context).pushNamed(AddAddress.routeName);
+                      })
                     ],
                   ),
                 ),
                 SizedBox(height:30),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        child: Text('Gifting Address'),
-                      ),
-                      IconButton(icon: Icon(Icons.edit), onPressed: (){_showAlert(context,'The Gifting Address is ',4);})
-                    ],
-                  ),
-                ),
+               
               ],
             )
           ],
