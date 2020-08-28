@@ -1,3 +1,4 @@
+import 'package:BoldAlive/screens/atoms/head_of_app.dart';
 import 'package:BoldAlive/screens/myprofile/myprofile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class AddAddress extends StatefulWidget {
 class _AddAddressState extends State<AddAddress> {
   final _form = GlobalKey<FormState>();
   bool _isLoading = false;
+  final ad2 = FocusNode();
+  final cit = FocusNode();
+  final sta = FocusNode();
   String _add1 = '';
   String _add2 = '';
   String _city = '';
@@ -41,6 +45,7 @@ class _AddAddressState extends State<AddAddress> {
           'city':_city,
           'state':_state
         });
+        print(_add1);print(_add2);print(_city);print(_state);
 
         //showing congratulatory Snackbar on sucesful signup
         Scaffold.of(ctx).hideCurrentSnackBar();
@@ -100,201 +105,214 @@ class _AddAddressState extends State<AddAddress> {
   Widget build(BuildContext context) {
     return Scaffold(
           body: SingleChildScrollView(
-          child: Form(
-              key: _form,
-              child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      
-                      SizedBox(height: 30,),
-                      
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text('Address lane 1', style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87
-                            ),),
-                            SizedBox(height: 5,),
-                            TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value){
-                                if(value.isEmpty || value.length <5){
-                                  return "Enter valid address";
-                                }
-                                return null;
-                              },
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
+          child: Container(
+            padding: EdgeInsets.only(right:40,left:40,bottom:40),
+            child: Form(
+                key: _form,
+                child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 0),
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Headofapp(title: 'Add Your Address',subtitle: 'Add your address for Shipping',),
+                    Column(
+                      children: <Widget>[
+                        
+                        SizedBox(height: 30,),
+                        
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Address lane 1', style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black87
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                validator: (value){
+                                  if(value.isEmpty || value.length <5){
+                                    return "Enter valid address";
+                                  }
+                                  return null;
+                                },
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
                                 ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
+                                onFieldSubmitted: (_){
+                                  FocusScope.of(context).requestFocus(ad2);
+                                },                                
+                                onSaved: (value){
+                                  _add1=value;
+                                },
                               ),
-                              
-                              onSaved: (value){
-                                _add1=value;
-                              },
-                            ),
-                            SizedBox(height: 30,),
-                          ],
-                        ),
-                      ),
-                       Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text('Landmark', style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87
-                            ),),
-                            SizedBox(height: 5,),
-                            TextFormField(
-                              validator: (value){
-                                if(value.isEmpty || value.length <4){
-                                  return "Enter a Landmark or Address Lane 2";
-                                }
-                                return null;
-                              },
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
-                              ),
-                             
-                              onSaved: (value){
-                                _add2=value;
-                              },
-                            ),
-                            SizedBox(height: 30,),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text('City', style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87
-                            ),),
-                            SizedBox(height: 5,),
-                            TextFormField(
-                              validator: (value){
-                                if(value.isEmpty || value.length<4){
-                                  return "Enter Your City Name";
-                                }
-                                return null;
-                              },
-                              obscureText: true,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
-                              ),
-                              
-                              onSaved: (value){
-                                _city=value;
-                              },
-                            ),
-                            SizedBox(height: 30,),
-                          ],
-                        ),
-                      ),
-                       Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text('State', style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87
-                            ),),
-                            SizedBox(height: 5,),
-                            TextFormField(
-                              validator: (value){
-                                if(value.isEmpty || value.length<6){
-                                  return "Enter your state";
-                                }
-                                return null;
-                              },
-                              obscureText: true,
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey[400])
-                                ),
-                              ),
-                              onFieldSubmitted: (_){
-                                FocusScope.of(context).unfocus();
-                              },
-                              onSaved: (value){
-                                _state = value;
-                              },
-                              
-                            ),
-                            SizedBox(height: 60,),
-                          ],
-                        ),
-                      ),
-                      _isLoading ? Center(child:CircularProgressIndicator(backgroundColor: Colors.greenAccent)) : 
-                      Container(
-                        padding: EdgeInsets.only(top: 3, left: 3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border(
-                            bottom: BorderSide(color: Colors.black),
-                            top: BorderSide(color: Colors.black),
-                            left: BorderSide(color: Colors.black),
-                            right: BorderSide(color: Colors.black),
-                          )
-                        ),
-                        child: MaterialButton(
-                          minWidth: double.infinity,
-                          height: 60,
-                          onPressed: () {
-                              _saveForm(context);
-                          },
-                          color: Colors.greenAccent,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)
+                              SizedBox(height: 30,),
+                            ],
                           ),
-                          child: Text("Add Address", style: TextStyle(
-                            fontWeight: FontWeight.w600, 
-                            fontSize: 18
-                          ),),
                         ),
-                      ),           
-                     ],
-                  ),
-                ],
+                         Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Landmark', style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black87
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                validator: (value){
+                                  if(value.isEmpty || value.length <4){
+                                    return "Enter a Landmark or Address Lane 2";
+                                  }
+                                  return null;
+                                },
+                                focusNode: ad2,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                ),
+                                onFieldSubmitted: (_){
+                                  FocusScope.of(context).requestFocus(cit);
+                                },
+                               
+                                onSaved: (value){
+                                  _add2=value;
+                                },
+                              ),
+                              SizedBox(height: 30,),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('City', style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black87
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                validator: (value){
+                                  if(value.isEmpty || value.length<4){
+                                    return "Enter Your City Name,it must be more than 4 characters";
+                                  }
+                                  return null;
+                                },
+                                textInputAction: TextInputAction.next,
+                                focusNode: cit,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                ),
+                                onFieldSubmitted: (_){
+                                  FocusScope.of(context).requestFocus(sta);
+                                },
+                                
+                                onSaved: (value){
+                                  _city=value;
+                                },
+                              ),
+                              SizedBox(height: 30,),
+                            ],
+                          ),
+                        ),
+                         Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('State', style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black87
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                validator: (value){
+                                  if(value.isEmpty || value.length<3){
+                                    return "Enter your state";
+                                  }
+                                  return null;
+                                },
+                                focusNode: sta,
+                                textInputAction: TextInputAction.done,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey[400])
+                                  ),
+                                ),
+                                onFieldSubmitted: (_){
+                                  FocusScope.of(context).unfocus();
+                                },
+                                onSaved: (value){
+                                  _state = value;
+                                },
+                                
+                              ),
+                              SizedBox(height: 60,),
+                            ],
+                          ),
+                        ),
+                        _isLoading ? Center(child:CircularProgressIndicator(backgroundColor: Colors.greenAccent)) : 
+                        Container(
+                          padding: EdgeInsets.only(top: 3, left: 3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border(
+                              bottom: BorderSide(color: Colors.black),
+                              top: BorderSide(color: Colors.black),
+                              left: BorderSide(color: Colors.black),
+                              right: BorderSide(color: Colors.black),
+                            )
+                          ),
+                          child: MaterialButton(
+                            minWidth: double.infinity,
+                            height: 60,
+                            onPressed: () {
+                                _saveForm(context);
+                            },
+                            color: Colors.greenAccent,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)
+                            ),
+                            child: Text("Add Address", style: TextStyle(
+                              fontWeight: FontWeight.w600, 
+                              fontSize: 18
+                            ),),
+                          ),
+                        ),           
+                       ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
